@@ -3,7 +3,13 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import PoemSectionInput from "./PoemSectionInput";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
-import { addDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
 
 interface PoemDataType {
   title: string;
@@ -43,26 +49,22 @@ const AdminPostForm: React.FC = () => {
     e: ChangeEvent<HTMLInputElement>,
     fileType: "profile" | "background"
   ) => {
-    const file = e.target.files?.[0] || null;
+    const file = e.target.files?.[0];
     setPhoto((prevData) => ({
       ...prevData,
-      [`${fileType}Photo`]: file ? URL.createObjectURL(file) : "",
+      [`${fileType}Photo`]: file,
     }));
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
-    const profilephoto = photo.profilePhoto;
-    const bgPhoto = photo.backgroundPhoto;
-
-    await addDoc(poemRef, { ...poemData, timeStamp: serverTimestamp() }).then(
+    addDoc(poemRef, { ...poemData, timeStamp: serverTimestamp() }).then(
       (docData) => {
         console.log("Document written: " + docData.id);
-        if (profilephoto) {
+        if (photo.profilePhoto) {
           uploadBytes(
-            ref(storage, `/Profile_Pics/${docData.id}.png`),
-            profilephoto
+            ref(storage, `Profile_Pics/${docData.id}.png`),
+            photo.profilePhoto
           )
             .then((snapshot) => {
               console.log("Successful");
@@ -79,10 +81,10 @@ const AdminPostForm: React.FC = () => {
               console.error(error);
             });
         }
-        if (bgPhoto) {
+        if (photo.backgroundPhoto) {
           uploadBytes(
-            ref(storage, `/Background_Images/${docData.id}.png`),
-            bgPhoto
+            ref(storage, `Background_Images/${docData.id}.png`),
+            photo.backgroundPhoto
           )
             .then((snapshot) => {
               console.log("successfull");
@@ -97,7 +99,7 @@ const AdminPostForm: React.FC = () => {
                   bgPhotoLink: poemData.bgPhotoLink,
                   profilePhotoLink: poemData.profilePhotoLink,
                 })
-                  .then(() => {
+                  .then((docd) => {
                     console.log("Final is sucecssfull");
                   })
                   .catch((err) => {
@@ -118,86 +120,93 @@ const AdminPostForm: React.FC = () => {
   const handleAddComponent = () => {
     setComponentCount((prevCount) => prevCount + 1);
   };
-
   return (
     <>
-      <form
-        onSubmit={(e) => handleSubmit(e)}
-        className="bg-theme-3 w-full flex flex-col items-center justify-center gap-2"
-      >
-        <div className="flex items-center justify-center w-full gap-2 p-2">
+      <div className="bg-theme-4 p-4 w-full h-auto">
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          className="w-full h-full flex flex-col items-center justify-center gap-4"
+        >
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="title"
+          >
+            Title
+          </label>
           <input
             type="text"
+            id="title"
             required
-            className="p-2 rounded-sm w-auto"
+            className="p-2 rounded-sm w-[300px]"
             placeholder="Poem Title"
             name="title"
             onChange={handleInputChange}
           />
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="author"
+          >
+            Author
+          </label>
           <input
             type="text"
+            id="author"
             required
-            className="p-2 rounded-sm w-auto"
+            className="p-2 rounded-sm w-[300px]"
             placeholder="Author"
             name="author"
             onChange={handleInputChange}
           />
-        </div>
-        <div className="flex items-center justify-center w-full gap-2 p-2">
-          <div className="flex flex-col gap-2 p-2 justify-center items-center">
-            <label
-              className="bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
-              htmlFor="profile"
-            >
-              Profile Pic
-            </label>
-            <input
-              type="file"
-              required
-              id="profile"
-              className="p-2 rounded-sm bg-white active:bg-theme-1"
-              onChange={(e) => handleFileChange(e, "profile")}
-            />
-          </div>
-          <div className="flex flex-col gap-2 p-2 justify-center items-center">
-            <label
-              className="bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
-              htmlFor="background"
-            >
-              Background pic
-            </label>
-            <input
-              type="file"
-              required
-              id="background"
-              className="p-2 rounded-sm bg-white active:bg-theme-1"
-              onChange={(e) => handleFileChange(e, "background")}
-            />
-          </div>
-        </div>
-        {[...Array(componentCount)].map((_, index) => (
-          <PoemSectionInput
-            dataHandle={handleInputChange}
-            key={index}
-            name={`poem-text-${index + 1}`}
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="profile"
+          >
+            Profile Pic
+          </label>
+          <input
+            type="file"
+            required
+            id="profile"
+            className="p-2 w-[300px] rounded-sm bg-white active:bg-theme-1"
+            onChange={(e) => handleFileChange(e, "profile")}
           />
-        ))}
-        <div className="flex gap-6 mb-4">
-          <button
-            onClick={handleAddComponent}
-            className="p-2 bg-theme-1 transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
-            type="button"
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="background"
           >
-            Add Section
-          </button>
-          <button
-            type="submit"
-            className="p-2 bg-theme-1 transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+            Background pic
+          </label>
+          <input
+            type="file"
+            required
+            id="background"
+            className="p-2 w-[300px] rounded-sm bg-white active:bg-theme-1"
+            onChange={(e) => handleFileChange(e, "background")}
+          />
+          {[...Array(componentCount)].map((_, index) => (
+            <PoemSectionInput
+              dataHandle={handleInputChange}
+              key={index}
+              name={`poem-text-${index + 1}`}
+            />
+          ))}
+          <div className="flex gap-6 mb-4">
+            <button
+              onClick={handleAddComponent}
+              className="p-2 bg-theme-1 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
+              type="button"
+            >
+              Add Section
+            </button>
+            <button
+              type="submit"
+              className="p-2 bg-theme-1 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
