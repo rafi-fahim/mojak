@@ -2,13 +2,13 @@ export default function Home() {
   return (
     <>
       <section className="bg-theme-3 flex flex-col items-center justify-center aspect-video lg:w-full lg:h-screen relative">
-      <h1 className="font-extrabold heading-font w-full bg-[#1818188c] text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
+      {/* <h1 className="font-extrabold heading-font w-full  text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
         Welcome to
         </h1>
 
-        <h1 className="font-extrabold heading-font w-full bg-[#1818188c] text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
+        <h1 className="font-extrabold heading-font w-full  text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
           MOJAK
-        </h1>
+        </h1> */}
         <video
           loop
           autoPlay
@@ -21,11 +21,8 @@ export default function Home() {
           />
         </video>
       </section>
-      <div className="w-full bg-theme-1 h-40">
-        
-      </div>
       <section className="bg-theme-3 flex flex-col items-center justify-center aspect-video lg:w-full lg:h-screen relative">
-      <h1 className="font-extrabold heading-font w-full bg-[#1818188c] text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
+      <h1 className="font-extrabold heading-font w-full absolute bottom-0 text-center p-2 text-blue-400 font-kdam-pro z-20">
           A product of FSR Soft
         </h1>
         <video
