@@ -30,6 +30,6 @@ const page = () => {
       {checkLogin ? <AdminPostForm /> : <LoginForm setLogin={trueLoginState} />}
     </div>
   );
-};
+}; 
 
 export default page;
