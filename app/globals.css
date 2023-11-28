@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@400;700&family=Carter+One&family=Delius+Unicase&family=Kdam+Thmor+Pro&family=Road+Rage&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 260px 51px;
+}
+.poem-show-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  @apply place-items-center justify-items-center;
+}
+.poem-card {
+  width: clamp(10%, 350px, 97%);
+  height: 250px;
+}
+
+.heading-font {
+  -webkit-text-stroke: 2px white;
+}
+
+.rotate-angle {
+  left: 52%;
+  top: 58%;
+  translate: -50% -50%;
+  animation-name: angle-rotate;
+  animation-duration: 15s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
+@keyframes angle-rotate {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
