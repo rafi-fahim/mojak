@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "MOJAK",
-  description: "A poem sote for reading interesting poems",
+  description: "A poem site for reading interesting poems.",
 };
 
 export default function RootLayout({

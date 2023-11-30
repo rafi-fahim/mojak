@@ -2,6 +2,7 @@ import React from "react";
 import PoemCard from "./PoemCard";
 import { collection, getDocs, DocumentData } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
+import Link from "next/link";
 
 // Define an interface for your poem data
 interface PoemData {
@@ -29,13 +30,21 @@ const ShowAllPoemCards: React.FC = async () => {
     <div className="h-auto w-full poem-show-grid">
       {poemData ? poemData.map((item) => {
         return (
-          <PoemCard
-            author={item.author}
-            imageUrl={item.bgPhotoLink}
-            profilePic={item.profilePhotoLink}
-            title={item.title}
-            key={item.id}
-          />
+          <>
+          <Link
+            href={`/all-poems/${item.id}`}
+            className="rounded-md poem-card h-auto"
+            >
+      {/* Poemcard css in global css */}
+            <PoemCard
+              author={item.author}
+              imageUrl={item.bgPhotoLink}
+              profilePic={item.profilePhotoLink}
+              title={item.title}
+              key={item.id}
+            />
+          </Link>
+          </>
         );
       }) : (
         <h1 className="text-xl font-bold">Sorry Santo is too lazy to write poems 🙄</h1>

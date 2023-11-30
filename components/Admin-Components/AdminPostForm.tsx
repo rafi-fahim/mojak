@@ -5,7 +5,6 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
 import {
   addDoc,
-  collection,
   doc,
   serverTimestamp,
   updateDoc,
@@ -33,13 +32,14 @@ const AdminPostForm: React.FC = () => {
     bgPhotoLink: "",
     timeStamp: null,
   });
+  const [poemTextData , setPoemTextData] = useState<object[]>([])
   const [photo, setPhoto] = useState<PhotoDataType>({
     profilePhoto: null,
     backgroundPhoto: null,
   });
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setPoemData((prevData) => ({ ...prevData, [name]: value }));
@@ -55,76 +55,63 @@ const AdminPostForm: React.FC = () => {
       [`${fileType}Photo`]: file,
     }));
   };
+  const handleStoryText = ({name, value, index}: {
+    name: string;
+    value:string;
+    index:number;
+  }) => {
+    setPoemTextData([...poemTextData, {
+      [name]: value,
+      index: index,
+    }])
+  }
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    addDoc(poemRef, { ...poemData, timeStamp: serverTimestamp() }).then(
-      (docData) => {
-        console.log("Document written: " + docData.id);
-        if (photo.profilePhoto) {
-          uploadBytes(
-            ref(storage, `Profile_Pics/${docData.id}.png`),
-            photo.profilePhoto
-          )
-            .then((snapshot) => {
-              console.log("Successful");
-              getDownloadURL(snapshot.ref).then((item) => {
-                setPoemData((prev) => {
-                  return {
-                    ...prev,
-                    profilePhotoLink: `${item}`,
-                  };
-                });
-              });
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }
-        if (photo.backgroundPhoto) {
-          uploadBytes(
-            ref(storage, `Background_Images/${docData.id}.png`),
-            photo.backgroundPhoto
-          )
-            .then((snapshot) => {
-              console.log("successfull");
-              getDownloadURL(snapshot.ref).then((item) => {
-                setPoemData((prev) => {
-                  return {
-                    ...prev,
-                    bgPhotoLink: `${item}`,
-                  };
-                });
-                updateDoc(doc(db, "poems", `${docData.id}`), {
-                  bgPhotoLink: poemData.bgPhotoLink,
-                  profilePhotoLink: poemData.profilePhotoLink,
-                })
-                  .then((docd) => {
-                    console.log("Final is sucecssfull");
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        }
-      }
-    );
 
-    // Add additional logic to handle other form data submission
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();    
+    try {
+      const docData = await addDoc(poemRef, {
+        ...poemData,
+        timeStamp: serverTimestamp(),
+        poemTextArr: JSON.stringify(poemTextData)
+      });
+
+      const [profileSnapshot, backgroundSnapshot] = await Promise.all([
+        uploadBytes(ref(storage, `Profile_Pics/${docData.id}.png`), photo.profilePhoto!),
+        uploadBytes(ref(storage, `Background_Images/${docData.id}.png`), photo.backgroundPhoto! ),
+      ]);
+
+      const profilePhotoLink = await getDownloadURL(profileSnapshot.ref);
+      const bgPhotoLink = await getDownloadURL(backgroundSnapshot.ref);
+
+      setPoemData((prev) => ({
+        ...prev,
+        profilePhotoLink,
+        bgPhotoLink,
+      }));
+
+      await updateDoc(doc(db, "poems", `${docData.id}`), {
+        bgPhotoLink,
+        profilePhotoLink,
+      });
+
+      console.log("Document written and updated successfully");
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const handleAddComponent = () => {
     setComponentCount((prevCount) => prevCount + 1);
   };
+
   return (
     <>
       <div className="bg-theme-4 p-4 w-full h-auto">
         <form
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
           className="w-full h-full flex flex-col items-center justify-center gap-4"
         >
           <label
@@ -185,8 +172,9 @@ const AdminPostForm: React.FC = () => {
           />
           {[...Array(componentCount)].map((_, index) => (
             <PoemSectionInput
-              dataHandle={handleInputChange}
+              dataHandle={handleStoryText}
               key={index}
+              index={index}
               name={`poem-text-${index + 1}`}
             />
           ))}

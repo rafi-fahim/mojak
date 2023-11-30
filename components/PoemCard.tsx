@@ -18,9 +18,8 @@ const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
   return (
     <div
       style={divStyles}
-      className="rounded-md relative bg-no-repeat poem-card h-auto text-white gap-2 flex flex-col items-center justify-center"
+      className="bg-no-repeat h-full w-full rounded-md text-white gap-2 flex flex-col items-center justify-center"
     >
-      {/* Poemcard css in global css */}
       <h1 className="text-7xl font-road-rage">{title}</h1>
       <div className="flex w-1/2 text-4xl justify-between items-center">
         <p className="font-kdam-pro">By</p>
