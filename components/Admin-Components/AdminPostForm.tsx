@@ -16,6 +16,9 @@ interface PoemDataType {
   profilePhotoLink: string;
   bgPhotoLink: string;
   timeStamp: Date | null;
+  bio : string;
+  work: string;
+  poemTextArr?: Array<{ [key: string]: string | number }>;
 }
 
 interface PhotoDataType {
@@ -31,6 +34,8 @@ const AdminPostForm: React.FC = () => {
     profilePhotoLink: "",
     bgPhotoLink: "",
     timeStamp: null,
+    bio: "",
+    work: ""
   });
   const [poemTextData , setPoemTextData] = useState<object[]>([])
   const [photo, setPhoto] = useState<PhotoDataType>({
@@ -55,26 +60,23 @@ const AdminPostForm: React.FC = () => {
       [`${fileType}Photo`]: file,
     }));
   };
-  const handleStoryText = ({name, value, index}: {
-    name: string;
-    value:string;
-    index:number;
-  }) => {
-    setPoemTextData([...poemTextData, {
-      [name]: value,
-      index: index,
-    }])
-  }
-
+  const handleStoryText = ({ name, value, index }: { name: string; value: string; index: number }) => {
+    setPoemTextData((prevData) => {
+      const updatedData = [...prevData];
+      updatedData[index] = { [name]: value, index: index };
+      return updatedData;
+    });
+  };
+  
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();    
     try {
       const docData = await addDoc(poemRef, {
         ...poemData,
+        poemTextArr: poemTextData,
         timeStamp: serverTimestamp(),
-        poemTextArr: JSON.stringify(poemTextData)
-      });
+      });  
 
       const [profileSnapshot, backgroundSnapshot] = await Promise.all([
         uploadBytes(ref(storage, `Profile_Pics/${docData.id}.png`), photo.profilePhoto!),
@@ -94,8 +96,8 @@ const AdminPostForm: React.FC = () => {
         bgPhotoLink,
         profilePhotoLink,
       });
-
       console.log("Document written and updated successfully");
+
     } catch (error) {
       console.error("Error:", error);
     }
@@ -146,6 +148,36 @@ const AdminPostForm: React.FC = () => {
           />
           <label
             className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="work"
+          >
+            Author's Work
+          </label>
+          <input
+            type="text"
+            id="work"
+            required
+            className="p-2 rounded-sm w-[300px]"
+            placeholder="Work"
+            name="work"
+            onChange={handleInputChange}
+          />
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="bio"
+          >
+            Bio
+          </label>
+          <input
+            type="text"
+            id="bio"
+            required
+            className="p-2 rounded-sm w-[300px]"
+            placeholder="Bio"
+            name="bio"
+            onChange={handleInputChange}
+          />
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
             htmlFor="profile"
           >
             Profile Pic
@@ -175,7 +207,7 @@ const AdminPostForm: React.FC = () => {
               dataHandle={handleStoryText}
               key={index}
               index={index}
-              name={`poem-text-${index + 1}`}
+              name={`poem-text`}
             />
           ))}
           <div className="flex gap-6 mb-4">

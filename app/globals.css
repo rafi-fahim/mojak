@@ -21,6 +21,18 @@
   height: 250px;
 }
 
+.author-card {
+  width: clamp(55%, 420px, 98%);
+}
+.poem-div {
+  width: clamp(90%, 1000px, 98%);
+}
+
+.center-absolute {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
 .rotate-angle {
   left: 52%;
   top: 58%;
