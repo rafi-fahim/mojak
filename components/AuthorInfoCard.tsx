@@ -10,7 +10,7 @@ interface paramsType {
 
 const AuthorInfoCard = (params: paramsType) => {
   return (
-    <div className="flex h-[140px] mt-4 mb-4 bg-theme-4 author-card items-center rounded-lg">
+    <div className="flex h-[140px] mt-2 bg-theme-4 author-card items-center rounded-lg">
       <Image
         src={params.photoURL}
         className="h-[140px] w-[140px] aspect-square rounded-l-lg"
