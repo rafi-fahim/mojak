@@ -62,10 +62,12 @@ const ShowAllPoemCards: React.FC = () => {
               return (
                 <>
                   <motion.div
-                    className="rounded-md hover:scale-110 transition-transform poem-card h-auto"
+                    className="rounded-md lenear-animation transition-transform poem-card h-auto"
                     initial={{ translateX: "-100%" }}
                     whileInView={{ translateX: 0 }}
+                    // transition={{ ease: "linear", duration: "400ms" }}
                     key={item.id}
+                    
                   >
                     <Link
                       href={`/all-poems/${item.id}`}

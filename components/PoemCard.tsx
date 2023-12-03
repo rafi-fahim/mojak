@@ -19,7 +19,7 @@ const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
     <>
       <div
         style={divStyles}
-        className="bg-no-repeat  relative overflow-hidden h-full w-full rounded-md text-white gap-2 flex flex-col items-center justify-center"
+        className="bg-no-repeat hover:-translate-y-4 transition-transform relative overflow-hidden h-full w-full rounded-md text-white gap-2 flex flex-col items-center justify-center"
       >
         <h1 className="text-4xl font-bold font-road-rage">{title}</h1>
         <div className="flex w-1/2 text-4xl justify-between items-center">

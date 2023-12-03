@@ -45,7 +45,8 @@ const Navbar = () => {
             Poems --&gt;
           </Link>
           <Link
-            className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+          onClick={closeMenu}
+            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/admin"
           >
             Admin 🕵️‍♀️

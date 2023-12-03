@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Carter+One&family=Delius+Unicase&family=Kdam+Thmor+Pro&family=Road+Rage&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Noto+Sans+Bengali:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.maateen.me/charukola-ultra-light/font.css');
+@import url('https://fonts.maateen.me/ekushey-lohit/font.css');
+@import url('https://fonts.maateen.me/mukti/font.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,7 +37,9 @@
   left: 50%;
   translate: -50% -50%;
 }
-
+.lenear-animation {
+  animation-timing-function: linear;
+}
 .rotate-angle {
   left: 52%;
   top: 58%;
