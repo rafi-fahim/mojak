@@ -13,6 +13,7 @@ interface PoemDataType {
   timeStamp: Date | null;
   bio: string;
   work: string;
+  fontFamily: string;
   poemTextArr?: Array<{ [key: string]: string | number }>;
 }
 
@@ -31,6 +32,7 @@ const AdminPostForm: React.FC = () => {
     timeStamp: null,
     bio: "",
     work: "",
+    fontFamily: "",
   });
   const [poemTextData, setPoemTextData] = useState<object[]>([]);
   const [photo, setPhoto] = useState<PhotoDataType>({
@@ -40,7 +42,7 @@ const AdminPostForm: React.FC = () => {
   const [formLoading, setFormLoading] = useState<boolean>(false);
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setPoemData((prevData) => ({ ...prevData, [name]: value }));
@@ -81,6 +83,7 @@ const AdminPostForm: React.FC = () => {
       timeStamp: null,
       bio: "",
       work: "",
+      fontFamily: "",
     });
     setPoemTextData([]);
     setPhoto({
@@ -228,9 +231,34 @@ const AdminPostForm: React.FC = () => {
             type="file"
             required
             id="background"
-            className="p-2 w-[300px] rounded-sm bg-white active:bg-theme-1"
+            className="p-2 font-charukola-light w-[300px] rounded-sm bg-white active:bg-theme-1"
             onChange={(e) => handleFileChange(e, "background")}
           />
+          <label
+            className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
+            htmlFor="font-family"
+          >
+            Select Font Family
+          </label>
+          <select
+            onChange={handleInputChange}
+            name="fontFamily"
+            id="font-family"
+            className="p-2 rounded-sm w-[300px]"
+          >
+            <option value="" className="font-mukti">
+              --default--
+            </option>
+            <option value="charukola-light" className="font-charukola-light">
+              চারূকলা লাইট
+            </option>
+            <option value="ekushe-loti" className="font-ekushe-loti">
+              একুশে লতি
+            </option>
+            <option value="mukti" className="font-mukti">
+              মুক্তি
+            </option>
+          </select>
           {[...Array(componentCount)].map((_, index) => (
             <PoemSectionInput
               dataHandle={handleStoryText}
@@ -256,7 +284,8 @@ const AdminPostForm: React.FC = () => {
           </button>
           {formLoading && (
             <h1 className="font-bold font-2xl text-green-700">
-              Submitting ....<br/>
+              Submitting ....
+              <br />
               Do not close this window until this message disappeares 🙂❌
             </h1>
           )}
