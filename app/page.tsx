@@ -20,6 +20,7 @@ export default function Home() {
             src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FVideos%2Fcover-page%20-begining.mp4?alt=media&token=737bc8b7-d1d5-45d0-8292-d58eda248446"
           />
         </video>
+        <h1 className="z-30 letter-space font-bold text-7xl sm:first-letter:text-[140px] font-rubik sm:text-9xl uppercase stroke-text text-white">MOJAK</h1>
       </section>
       <section className="bg-theme-3 flex flex-col items-center justify-center aspect-video lg:w-full lg:h-screen relative">
       <h1 className="font-extrabold max-sm:p-0 max-sm:text-xs sm:text-lg text-white heading-font w-full absolute bottom-0 text-center p-2 font-kdam-pro z-20">

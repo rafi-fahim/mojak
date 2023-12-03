@@ -61,3 +61,6 @@
 .stroke-text {
   -webkit-text-stroke: 1px black;
 }
+.letter-space {
+  letter-spacing: 6px;
+}

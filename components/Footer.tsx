@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -30,7 +31,7 @@ const Footer = () => {
         <p className="max-sm:text-xs text-base">
           To learn more :{" "}
           <Link
-            className="text-red-500 hover:underline font-medium"
+            className="text-red-500 z-30 hover:underline font-medium"
             href="/about"
           >
             Click Here
@@ -61,7 +62,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="h-full w-full flex flex-col justify-start p-2 gap-2 items-end">
-        <Discord width="100px" height="100px" fill="#fff" key={"Bruh"} />
+        <Image className="rounded-full w-[100px] h-[100px]" alt="FSR SOFT LOGO" width={100} height={100} src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3"  />
         <h1 className="text-3xl max-sm:text-xl font-medium">Deveoped By</h1>
         <h1 className="text-4xl max-sm:text-2xl font-bold text-green-600">
           FSR SOFT

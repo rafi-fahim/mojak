@@ -62,9 +62,9 @@ const ShowAllPoemCards: React.FC = () => {
               return (
                 <>
                   <motion.div
-                    className="rounded-md lenear-animation transition-transform poem-card h-auto"
-                    initial={{ translateX: "-100%" }}
-                    whileInView={{ translateX: 0 }}
+                    className="rounded-md lenear-animation p-2 transition-transform poem-card h-auto"
+                    initial={{ translateX: "-100%", opacity: 0 }}
+                    whileInView={{ translateX: 0 , opacity: 1 }}
                     // transition={{ ease: "linear", duration: "400ms" }}
                     key={item.id}
                     
