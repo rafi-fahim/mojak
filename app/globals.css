@@ -64,3 +64,9 @@
 .letter-space {
   letter-spacing: 6px;
 }
+.login-form-width {
+  width: clamp(30%, 350px, 97%);
+}
+.thought-card-width {
+  width: clamp(30%, 650px, 97%);
+}

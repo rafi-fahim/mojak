@@ -18,35 +18,35 @@ const Navbar = () => {
         >
           <Link
             onClick={closeMenu}
-            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/"
           >
             Home 🏠
           </Link>
           <Link
             onClick={closeMenu}
-            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/about"
           >
             About 👱‍♂️
           </Link>
           <Link
             onClick={closeMenu}
-            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/contact"
           >
             Contact 📞
           </Link>
           <Link
             onClick={closeMenu}
-            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/all-poems"
           >
             Poems --&gt;
           </Link>
           <Link
           onClick={closeMenu}
-            className="pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/admin"
           >
             Admin 🕵️‍♀️
@@ -70,7 +70,7 @@ const Navbar = () => {
             🔰 Menu 🔰
           </motion.button>
           <Link
-            className="sm:hidden pt-1 pb-1 pr-2 pl-2 z-20 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            className="z-30 sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
             href="/all-poems"
           >
             Poems --&gt;
@@ -79,25 +79,25 @@ const Navbar = () => {
       )}
       <div className="flex max-sm:hidden items-center gap-4 justify-start p-1 h-full">
         <Link
-          className="pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+          className="z-30 pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
           href="/"
         >
           Home 🏠
         </Link>
         <Link
-          className="pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+          className="z-30 pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
           href="/about"
         >
           About 👱‍♂️
         </Link>
         <Link
-          className="pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+          className="z-30 pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
           href="/contact"
         >
           Contact 📞
         </Link>
       <Link
-        className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+        className="z-30 max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
         href="/admin"
       >
         Admin 🕵️‍♀️
@@ -105,7 +105,7 @@ const Navbar = () => {
       </div>
 
       <Link
-        className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+        className="z-30 max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
         href="/all-poems"
       >
         Poems --&gt;

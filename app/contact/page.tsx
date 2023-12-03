@@ -13,7 +13,7 @@ const page = () => {
         className="giphy-embed"
         allowFullScreen
       ></iframe>
-      <p>Go and read poems. You don't need to know about us right now 😐:</p>
+      <p>Go and read poems. You don't need to contact us right now 😐:</p>
       <Link
         className="pt-1 pb-1 pr-2 pl-2 text-center text-black font-cabin-sketch font-bold w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-1 hover:scale-110 transition-all"
         href="/all-poems"
