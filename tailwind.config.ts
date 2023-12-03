@@ -19,7 +19,8 @@ const config: Config = {
         "delius" : "'Delius Unicase', cursive",
         "kdam-pro" : "'Kdam Thmor Pro', sans-serif",
         "road-rage" : "'Road Rage', sans-serif",
-        "rubik" : "Rubik, 'sans-serif'"
+        "rubik" : "Rubik, 'sans-serif'",
+        "noto-bengali" : "'Noto Sans Bengali', 'sans-serif'",
       },
       backgroundImage: {
         'home-page' : '../public/images/home-bg.png'

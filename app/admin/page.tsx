@@ -4,10 +4,11 @@ import { useState } from "react"
 import { onAuthStateChanged } from "firebase/auth";
 import LoginForm from "@/components/Admin-Components/LoginForm";
 import AdminPostForm from "@/components/Admin-Components/AdminPostForm";
+import Loading from "@/components/Loading";
 
 const page = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false)
-
+  const [loading, setLoading] = useState<boolean>(true)
   onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
@@ -18,6 +19,7 @@ const page = () => {
     } else {
       falseLoginState()
     }
+    setLoading(false)
   });
   const trueLoginState = () => setCheckLogin(true)
   const falseLoginState = () => setCheckLogin(false)
@@ -27,7 +29,7 @@ const page = () => {
       <h1 className="text-6xl uppercase pl-2 pr-2 mt-4 text-center font-medium font-road-rage mb-4 bg-theme-4 border-2 border-theme-1 rounded-[2px] max-sm:w-5/6 w-1/4 ">
         Admin page
       </h1>
-      {checkLogin ? <AdminPostForm /> : <LoginForm setLogin={trueLoginState} />}
+      {loading ? <Loading /> : checkLogin ? <AdminPostForm /> : <LoginForm setLogin={trueLoginState} />}
     </div>
   );
 }; 

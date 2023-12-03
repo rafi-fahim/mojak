@@ -44,6 +44,13 @@ const Navbar = () => {
           >
             Poems --&gt;
           </Link>
+          <Link
+            className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+            href="/admin"
+          >
+            Admin 🕵️‍♀️
+          </Link>
+
           <motion.button
             whileTap={{ scale: 1.3 }}
             onClick={() => setMenu((prev) => !prev)}
@@ -88,7 +95,14 @@ const Navbar = () => {
         >
           Contact 📞
         </Link>
+      <Link
+        className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
+        href="/admin"
+      >
+        Admin 🕵️‍♀️
+      </Link>
       </div>
+
       <Link
         className="max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
         href="/all-poems"

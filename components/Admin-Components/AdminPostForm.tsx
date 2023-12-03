@@ -3,12 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import PoemSectionInput from "./PoemSectionInput";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
-import {
-  addDoc,
-  doc,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
+import { addDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 
 interface PoemDataType {
   title: string;
@@ -16,7 +11,7 @@ interface PoemDataType {
   profilePhotoLink: string;
   bgPhotoLink: string;
   timeStamp: Date | null;
-  bio : string;
+  bio: string;
   work: string;
   poemTextArr?: Array<{ [key: string]: string | number }>;
 }
@@ -35,16 +30,17 @@ const AdminPostForm: React.FC = () => {
     bgPhotoLink: "",
     timeStamp: null,
     bio: "",
-    work: ""
+    work: "",
   });
-  const [poemTextData , setPoemTextData] = useState<object[]>([])
+  const [poemTextData, setPoemTextData] = useState<object[]>([]);
   const [photo, setPhoto] = useState<PhotoDataType>({
     profilePhoto: null,
     backgroundPhoto: null,
   });
+  const [formLoading, setFormLoading] = useState<boolean>(false);
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setPoemData((prevData) => ({ ...prevData, [name]: value }));
@@ -60,27 +56,58 @@ const AdminPostForm: React.FC = () => {
       [`${fileType}Photo`]: file,
     }));
   };
-  const handleStoryText = ({ name, value, index }: { name: string; value: string; index: number }) => {
+  const handleStoryText = ({
+    name,
+    value,
+    index,
+  }: {
+    name: string;
+    value: string;
+    index: number;
+  }) => {
     setPoemTextData((prevData) => {
       const updatedData = [...prevData];
       updatedData[index] = { [name]: value, index: index };
       return updatedData;
     });
   };
-  
+
+  const resetForm = () => {
+    setPoemData({
+      title: "",
+      author: "",
+      profilePhotoLink: "",
+      bgPhotoLink: "",
+      timeStamp: null,
+      bio: "",
+      work: "",
+    });
+    setPoemTextData([]);
+    setPhoto({
+      profilePhoto: null,
+      backgroundPhoto: null,
+    });
+    setComponentCount(1);
+  };
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();    
+    e.preventDefault();
     try {
       const docData = await addDoc(poemRef, {
         ...poemData,
         poemTextArr: poemTextData,
         timeStamp: serverTimestamp(),
-      });  
+      });
 
       const [profileSnapshot, backgroundSnapshot] = await Promise.all([
-        uploadBytes(ref(storage, `Profile_Pics/${docData.id}.png`), photo.profilePhoto!),
-        uploadBytes(ref(storage, `Background_Images/${docData.id}.png`), photo.backgroundPhoto! ),
+        uploadBytes(
+          ref(storage, `Profile_Pics/${docData.id}.png`),
+          photo.profilePhoto!
+        ),
+        uploadBytes(
+          ref(storage, `Background_Images/${docData.id}.png`),
+          photo.backgroundPhoto!
+        ),
       ]);
 
       const profilePhotoLink = await getDownloadURL(profileSnapshot.ref);
@@ -96,8 +123,9 @@ const AdminPostForm: React.FC = () => {
         bgPhotoLink,
         profilePhotoLink,
       });
+      setFormLoading(false);
       console.log("Document written and updated successfully");
-
+      resetForm();
     } catch (error) {
       console.error("Error:", error);
     }
@@ -112,6 +140,7 @@ const AdminPostForm: React.FC = () => {
       <div className="bg-theme-4 p-4 w-full h-auto">
         <form
           onSubmit={(e) => {
+            setFormLoading(true);
             handleSubmit(e);
           }}
           className="w-full h-full flex flex-col items-center justify-center gap-4"
@@ -219,12 +248,18 @@ const AdminPostForm: React.FC = () => {
               Add Section
             </button>
           </div>
-            <button
-              type="submit"
-              className="p-2 bg-theme-1 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
-            >
-              Submit
-            </button>
+          <button
+            type="submit"
+            className="p-2 bg-theme-1 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
+          >
+            Submit
+          </button>
+          {formLoading && (
+            <h1 className="font-bold font-2xl text-green-700">
+              Submitting ....<br/>
+              Do not close this window until this message disappeares 🙂❌
+            </h1>
+          )}
         </form>
       </div>
     </>

@@ -1,9 +1,12 @@
-import React from "react";
+"use client";
 import PoemCard from "./PoemCard";
-import { collection, getDocs, DocumentData } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/app/Firebase/firebase";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
+import Loading from "./Loading";
 
 // Define an interface for your poem data
 interface PoemData {
@@ -24,9 +27,23 @@ const getData = async (): Promise<PoemData[]> => {
   return data;
 };
 
-const ShowAllPoemCards: React.FC = async () => {
-  const poemData = await getData();
+const ShowAllPoemCards: React.FC = () => {
+  const [poemData, setPoemData] = useState<PoemData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getData();
+        setPoemData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <Head>
@@ -36,34 +53,44 @@ const ShowAllPoemCards: React.FC = async () => {
         />
         <meta httpEquiv="Pragma" content="no-cache" />
       </Head>
-
-      <div className="h-auto w-full p-2 poem-show-grid">
-        {poemData ? (
-          poemData.map((item) => {
-            return (
-              <>
-                <Link
-                  href={`/all-poems/${item.id}`}
-                  className="rounded-md hover:scale-110 transition-transform poem-card h-auto"
-                >
-                  {/* Poemcard css in global css */}
-                  <PoemCard
-                    author={item.author}
-                    imageUrl={item.bgPhotoLink}
-                    profilePic={item.profilePhotoLink}
-                    title={item.title}
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="h-auto w-full p-2 poem-show-grid">
+          {poemData ? (
+            poemData.map((item) => {
+              return (
+                <>
+                  <motion.div
+                    className="rounded-md hover:scale-110 transition-transform poem-card h-auto"
+                    initial={{ translateX: "-100%" }}
+                    whileInView={{ translateX: 0 }}
                     key={item.id}
-                  />
-                </Link>
-              </>
-            );
-          })
-        ) : (
-          <h1 className="text-xl font-bold">
-            Sorry Santo is too lazy to write poems 🙄
-          </h1>
-        )}
-      </div>
+                  >
+                    <Link
+                      href={`/all-poems/${item.id}`}
+                      className="h-full w-full"
+                    >
+                      {/* Poemcard css in global css */}
+                      <PoemCard
+                        author={item.author}
+                        imageUrl={item.bgPhotoLink}
+                        profilePic={item.profilePhotoLink}
+                        title={item.title}
+                        key={item.id}
+                      />
+                    </Link>
+                  </motion.div>
+                </>
+              );
+            })
+          ) : (
+            <h1 className="text-xl font-bold">
+              Sorry Santo is too lazy to write poems 🙄
+            </h1>
+          )}
+        </div>
+      )}
     </>
   );
 };

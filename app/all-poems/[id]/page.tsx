@@ -44,7 +44,7 @@ const page = async ({ params }: { params: { id: string } }) => {
           content={`Author: ${poemData.author}`}
         />
       </Head>
-      <div className="w-full h-auto flex justify-center flex-col gap-4 items-center p-2">
+      <div className="w-full h-auto font-noto-bengali flex justify-center flex-col gap-4 items-center p-2">
         <AuthorInfoCard
           authorName={poemData.author}
           photoURL={poemData.profilePhotoLink}
@@ -57,10 +57,10 @@ const page = async ({ params }: { params: { id: string } }) => {
           style={poemDivBgImage}
           className="h-auto rounded-sm border items-center justify-center p-2 border-blue-500 poem-div flex flex-col bg-no-repeat bg-center bg-cover"
         >
-          <h1 className="text-3xl font-black stroke-text stroke-text text-white font-rubik">
+          <h1 className="text-3xl uppercase font-bold stroke-text stroke-text text-white font-rubik">
             Poem: {poemData.title}
           </h1>
-          <h2 className="text-3xl font-black stroke-text stroke-text text-white font-rubik">
+          <h2 className="text-3xl font-bold uppercase stroke-text stroke-text text-white font-rubik">
             Author: {poemData.author}
           </h2>
           {poemData.poemTextArr?.map((item) => {
@@ -70,7 +70,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 key={item.index}
                 className={`${
                   item.index % 2 === 0 ? "self-start" : "self-end"
-                } sm:text-4xl max-sm:text-sm font-medium text-white p-4`}
+                } sm:text-4xl max-sm:text-base font-medium text-white p-4`}
               >
                 {lines.map((line, index) => (
                   <React.Fragment key={index}>
