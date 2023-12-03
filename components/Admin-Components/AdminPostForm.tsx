@@ -218,13 +218,13 @@ const AdminPostForm: React.FC = () => {
             >
               Add Section
             </button>
+          </div>
             <button
               type="submit"
               className="p-2 bg-theme-1 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
             >
               Submit
             </button>
-          </div>
         </form>
       </div>
     </>

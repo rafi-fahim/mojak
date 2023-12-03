@@ -9,16 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "theme-1": "#7071E8",
-        "theme-2": "#C683D7",
-        "theme-3": "#ED9ED6",
-        "theme-4": "#FFC7C7",
+        "theme-1": "#363062",
+        "theme-2": "#435585",
+        "theme-3": "#818FB4",
+        "theme-4": "#F5E8C7",
       },
       fontFamily: {
         "cabin-sketch" : "'Cabin Sketch', sans-serif",
         "delius" : "'Delius Unicase', cursive",
         "kdam-pro" : "'Kdam Thmor Pro', sans-serif",
-        "road-rage" : "'Road Rage', sans-serif"
+        "road-rage" : "'Road Rage', sans-serif",
+        "rubik" : "Rubik, 'sans-serif'"
       },
       backgroundImage: {
         'home-page' : '../public/images/home-bg.png'

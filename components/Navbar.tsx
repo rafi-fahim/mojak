@@ -7,7 +7,7 @@ const Navbar = () => {
   const closeMenu = () => setMenu(false);
   const openMenu = () => setMenu(true);
   return (
-    <nav className="flex uppercase text-2xl font-extrabold font-cabin-sketch gap-4 p-2 h-16 bg-theme-1 items-center justify-between">
+    <nav className="flex uppercase text-2xl font-bold font-cabin-sketch gap-4 p-2 h-16 bg-theme-1 items-center justify-between">
       {menu ? (
         <motion.div
           initial={{ scale: 0, translateX: -100, opacity: 0 }}

@@ -22,7 +22,7 @@ export default function Home() {
         </video>
       </section>
       <section className="bg-theme-3 flex flex-col items-center justify-center aspect-video lg:w-full lg:h-screen relative">
-      <h1 className="font-extrabold heading-font w-full absolute bottom-0 text-center p-2 text-blue-400 font-kdam-pro z-20">
+      <h1 className="font-extrabold max-sm:p-0 max-sm:text-xs sm:text-lg text-white heading-font w-full absolute bottom-0 text-center p-2 font-kdam-pro z-20">
           A product of FSR Soft
         </h1>
         <video

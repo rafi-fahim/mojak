@@ -15,6 +15,12 @@ const PoemSectionInput = ({ name, dataHandle, index }: Type) => {
     setShowButton(false);
   };
 
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // Replace Enter key with a newline character
+    const newText = e.target.value.replace(/\r?\n/g, '\n');
+    setPoemText(newText);
+  };
+
   return (
     <>
       <label className='uppercase bg-theme-1 rounded-md p-2 text-white' htmlFor={name}>
@@ -26,7 +32,7 @@ const PoemSectionInput = ({ name, dataHandle, index }: Type) => {
         name={name}
         placeholder='Enter the poem'
         value={poemText}
-        onChange={(e) => setPoemText(e.target.value)}
+        onChange={handleTextareaChange}
       ></textarea>
       {showButton && (
         <button

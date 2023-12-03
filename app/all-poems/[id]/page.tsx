@@ -1,6 +1,6 @@
 import { db } from "@/app/Firebase/firebase";
-import AuthorInfoCard from "@/components/AuthorInfoCard";
 import { doc, getDoc } from "firebase/firestore";
+import AuthorInfoCard from "@/components/AuthorInfoCard";
 import Head from "next/head";
 import React from "react";
 
@@ -25,12 +25,15 @@ const getPoemData = async (id: string) => {
   return poemData.data() as poemDataType;
 };
 
+// ... (other imports)
+
 const page = async ({ params }: { params: { id: string } }) => {
   const poemData = await getPoemData(params.id);
 
   const poemDivBgImage = {
-    backgroundImage: ` linear-gradient(to bottom, #1a1a1a60 , #1a1a1a9a) , url(${poemData.bgPhotoLink})`,
+    backgroundImage: `linear-gradient(to bottom, #1a1a1a60 , #1a1a1a9a), url(${poemData.bgPhotoLink})`,
   };
+
   console.log(poemData);
 
   return (
@@ -52,9 +55,16 @@ const page = async ({ params }: { params: { id: string } }) => {
         {/* ------Poem div Width Is in global.css file---------- */}
         <div
           style={poemDivBgImage}
-          className="h-auto rounded-sm border border-blue-500 poem-div flex flex-col bg-no-repeat bg-center bg-cover"
+          className="h-auto rounded-sm border items-center justify-center p-2 border-blue-500 poem-div flex flex-col bg-no-repeat bg-center bg-cover"
         >
+          <h1 className="text-3xl font-black stroke-text stroke-text text-white font-rubik">
+            Poem: {poemData.title}
+          </h1>
+          <h2 className="text-3xl font-black stroke-text stroke-text text-white font-rubik">
+            Author: {poemData.author}
+          </h2>
           {poemData.poemTextArr?.map((item) => {
+            const lines = item["poem-text"].split("\n"); // Split text into an array of lines
             return (
               <p
                 key={item.index}
@@ -62,7 +72,13 @@ const page = async ({ params }: { params: { id: string } }) => {
                   item.index % 2 === 0 ? "self-start" : "self-end"
                 } sm:text-4xl max-sm:text-sm font-medium text-white p-4`}
               >
-                {item["poem-text"]}
+                {lines.map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    {index < lines.length - 1 && <br />}{" "}
+                    {/* Add <br> for all lines except the last one */}
+                  </React.Fragment>
+                ))}
               </p>
             );
           })}
