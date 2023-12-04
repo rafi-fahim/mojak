@@ -64,7 +64,7 @@ const RenderTHoughtCard = () => {
       </h1>
       <div className="flex justify-center items-center gap-2">
         <motion.button
-          whileTap={{ scale: 1.3 }}
+          whileTap={{ scale: 1.6 }}
           onClick={handleThoughtCardLeft}
           className="w-14 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 text-3xl rounded-sm shadow-sm p-1 shadow-slate-800"
         >
@@ -78,7 +78,7 @@ const RenderTHoughtCard = () => {
           key={thoughts[thoughtCardCount].index}
         />
         <motion.button
-          whileTap={{ scale: 1.3 }}
+          whileTap={{ scale: 1.6 }}
           onClick={handleThoughtCardRight}
           className="w-14 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 rounded-sm text-3xl shadow-sm p-1 shadow-slate-800"
         >
