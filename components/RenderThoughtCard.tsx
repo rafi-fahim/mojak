@@ -56,6 +56,7 @@ const RenderTHoughtCard = () => {
       setThoughtCardCount((prev) => prev - 1);
     }
   }
+  
   return (
     <>
       <h1 className="max-sm:text-xl text-2xl shadow shadow-theme-2 font-medium bg-theme-2 rounded-sm text-white p-2">
