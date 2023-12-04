@@ -2,11 +2,12 @@
 import PoemCard from "./PoemCard";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/app/Firebase/firebase";
+import { auth, db } from "@/app/Firebase/firebase";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
 import Loading from "./Loading";
+import { onAuthStateChanged } from "firebase/auth";
 
 // Define an interface for your poem data
 interface PoemData {
@@ -30,6 +31,7 @@ const getData = async (): Promise<PoemData[]> => {
 const ShowAllPoemCards: React.FC = () => {
   const [poemData, setPoemData] = useState<PoemData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +39,9 @@ const ShowAllPoemCards: React.FC = () => {
         const data = await getData();
         setPoemData(data);
         setLoading(false);
+        setError(false);
       } catch (error) {
+        setError(true);
         console.error("Error fetching data:", error);
       }
     };
@@ -57,17 +61,27 @@ const ShowAllPoemCards: React.FC = () => {
         <Loading />
       ) : (
         <div className="h-auto w-full p-2 poem-show-grid">
-          {poemData ? (
+          {error ? (
+            <p>It seem's you have a bad network 😐</p>
+          ) : poemData ? (
             poemData.map((item) => {
               return (
                 <>
                   <motion.div
                     className="rounded-md lenear-animation p-2 transition-transform poem-card h-auto"
-                    initial={{ translateX: "-100%", opacity: 0 }}
-                    whileInView={{ translateX: 0 , opacity: 1 }}
-                    // transition={{ ease: "linear", duration: "400ms" }}
+                    initial={{
+                      translateX: "-100%",
+                      opacity: 0,
+                      animationTimingFunction: "easeIn",
+                      backgroundBlendMode: "darken",
+                    }}
+                    whileInView={{
+                      translateX: 0,
+                      opacity: 1,
+                      backgroundBlendMode: "normal",
+                    }}
+                    whileTap={{ scale: 1.4 }}
                     key={item.id}
-                    
                   >
                     <Link
                       href={`/all-poems/${item.id}`}

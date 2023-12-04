@@ -10,7 +10,7 @@ const page = () => {
         width="380"
         height="380"
         frameBorder="0"
-        className="giphy-embed"
+        className="giphy-embed max-sm:h-[300px] max-sm:w-[300px]"
         allowFullScreen
       ></iframe>
       <p>Go and read poems. You don't need to contact us right now 😐:</p>

@@ -1,4 +1,7 @@
+"use client";
 import Image from "next/image";
+import AdminPoemCardMenu from "./Admin-Components/AdminPoemCardMenu";
+import { useState } from "react";
 
 interface Types {
   title: string;
@@ -7,14 +10,19 @@ interface Types {
   profilePic: string;
 }
 
-const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
+const PoemCard = ({
+  title,
+  author,
+  imageUrl,
+  profilePic,
+}: Types) => {
   // Inline styles for the first div with a static gradient and dynamic background image
   const divStyles = {
     backgroundImage: `linear-gradient(to bottom, #181818c5, #1818188e), url('${imageUrl}')`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
-
+  
   return (
     <>
       <div
@@ -39,3 +47,4 @@ const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
 };
 
 export default PoemCard;
+

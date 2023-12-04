@@ -88,8 +88,8 @@ const Footer = () => {
         </p>
       </div>
       <div className="w-full flex items-center col-span-2 justify-center p-2">
-        Copyright ©2023{" "}
-        <span className="text-green-400 font-medium">Mojak</span>
+        Copyright ©2023
+        <span className="text-green-400 font-medium ml-1">Mojak</span>
       </div>
     </div>
   );

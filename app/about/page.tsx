@@ -12,13 +12,13 @@ const page = () => {
         alt="All poems cover photo"
         className="w-full self-start h-auto"
       />
-      <div className="flex flex-col items-center gap-4 justify-center p-4">
+      <div className="flex flex-col items-center gap-4 justify-center text-center p-4">
         <h1>Fahim Shakil is too lazy to make a About page... 😪 </h1>
         <iframe
           src="https://giphy.com/embed/muCo9BLS7vjErTON27"
           width="380"
           height="380"
-          className="giphy-embed"
+          className="giphy-embed max-sm:w-[300px] max-sm:h-[300px]"
           allowFullScreen
         ></iframe>
         <p>Go and read poems. You don't need to know about us right now 😐:</p>

@@ -1,20 +1,11 @@
+import RenderOurGoals from "@/components/RenderOurGoals";
 import RenderTHoughtCard from "@/components/RenderThoughtCard";
 import React from "react";
 
-
 const page: React.FC = () => {
-
-
   return (
     <>
       <section className="bg-theme-3 flex flex-col items-center justify-center aspect-video lg:w-full lg:h-screen relative">
-        {/* <h1 className="font-extrabold heading-font w-full  text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
-        Welcome to
-        </h1>
-
-        <h1 className="font-extrabold heading-font w-full  text-center p-2 text-8xl max-sm:text-3xl text-blue-400 font-kdam-pro z-20">
-          MOJAK
-        </h1> */}
         <video
           loop
           autoPlay
@@ -50,20 +41,14 @@ const page: React.FC = () => {
       <section className="flex flex-col items-center justify-center relative p-4 gap-4 w-full h-auto">
         <RenderTHoughtCard />
       </section>
+      {/* ---------------------------OUR GOALS SECTOIN ----------------------- */}
+      <section className="w-full flex flex-col items-center justify-center p-2 sm:p-4 gap-6 h-auto">
+        <h1 className="max-sm:text-xl text-2xl shadow shadow-theme-2 font-medium bg-theme-2 rounded-sm text-white p-2">
+          Our Goals
+        </h1>
+        <RenderOurGoals />
+      </section>
     </>
   );
-}; 
+};
 export default page;
-//  <svg
-//   className="rotate-angle absolute"
-//     width="300px"
-//     height="300px"
-//     viewBox="0 0 384 384"
-//     fill="none"
-//     xmlns="http://www.w3.org/2000/svg"
-//   >
-//     <path
-//       d="M174.5 383.5L170.5 156.5L0 0L384 56.5L174.5 383.5Z"
-//       fill="#BD0C21"
-//     />
-//   </svg>

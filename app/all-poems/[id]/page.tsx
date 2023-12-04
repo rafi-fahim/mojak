@@ -1,8 +1,11 @@
-import { db } from "@/app/Firebase/firebase";
+import { auth, db } from "@/app/Firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import AuthorInfoCard from "@/components/AuthorInfoCard";
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import AdminPoemCardMenu from "@/components/Admin-Components/AdminPoemCardMenu";
+import RenderMenuModal from "@/components/Admin-Components/RenderMenuModal";
 
 interface PoemText {
   "poem-text": "string";
@@ -29,13 +32,16 @@ const getPoemData = async (id: string) => {
 // ... (other imports)
 
 const page = async ({ params }: { params: { id: string } }) => {
+
+
   const poemData = await getPoemData(params.id);
 
   const poemDivBgImage = {
     backgroundImage: `linear-gradient(to bottom, #1a1a1a60 , #1a1a1a9a), url(${poemData.bgPhotoLink})`,
   };
 
-  console.log(poemData);
+
+
 
   return (
     <>
@@ -46,6 +52,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         />
       </Head>
       <div className="w-full h-auto font-noto-bengali flex justify-center flex-col gap-4 items-center p-2">
+        <RenderMenuModal id={params.id} />
         <AuthorInfoCard
           authorName={poemData.author}
           photoURL={poemData.profilePhotoLink}
