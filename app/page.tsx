@@ -52,7 +52,7 @@ const page: React.FC = () => {
       </section>
     </>
   );
-};
+}; 
 export default page;
 //  <svg
 //   className="rotate-angle absolute"

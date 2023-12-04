@@ -18,7 +18,7 @@ interface poemDataType {
   poemTextArr?: PoemText[];
   work: string;
   bio: string;
-  fontFamily: string;
+  // fontFamily: string;
 }
 
 const getPoemData = async (id: string) => {
@@ -56,7 +56,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         {/* ------Poem div Width Is in global.css file---------- */}
         <div
           style={poemDivBgImage}
-          className={`h-auto rounded-sm ${poemData.fontFamily && `font-${poemData.fontFamily}`} border items-center justify-center p-2 border-blue-500 poem-div flex flex-col bg-no-repeat bg-center bg-cover`}
+          className={`h-auto rounded-sm border items-center justify-center p-2 border-blue-500 poem-div flex flex-col bg-no-repeat bg-center bg-cover`}
         >
           <h1 className="text-3xl uppercase font-bold stroke-text stroke-text text-white font-rubik">
             Poem: {poemData.title}

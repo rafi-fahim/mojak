@@ -13,7 +13,7 @@ interface PoemDataType {
   timeStamp: Date | null;
   bio: string;
   work: string;
-  fontFamily: string;
+  // fontFamily: string;
   poemTextArr?: Array<{ [key: string]: string | number }>;
 }
 
@@ -32,7 +32,7 @@ const AdminPostForm: React.FC = () => {
     timeStamp: null,
     bio: "",
     work: "",
-    fontFamily: "",
+    // fontFamily: "",
   });
   const [poemTextData, setPoemTextData] = useState<object[]>([]);
   const [photo, setPhoto] = useState<PhotoDataType>({
@@ -83,7 +83,7 @@ const AdminPostForm: React.FC = () => {
       timeStamp: null,
       bio: "",
       work: "",
-      fontFamily: "",
+      // fontFamily: "",
     });
     setPoemTextData([]);
     setPhoto({
@@ -234,7 +234,7 @@ const AdminPostForm: React.FC = () => {
             className="p-2 font-charukola-light w-[300px] rounded-sm bg-white active:bg-theme-1"
             onChange={(e) => handleFileChange(e, "background")}
           />
-          <label
+          {/* <label
             className="w-[300px] bg-theme-1 hover:border-2 hover:border-slate-700 hover:scale-110 transition-all hover:cursor-pointer rounded p-2 text-white font-medium"
             htmlFor="font-family"
           >
@@ -258,7 +258,7 @@ const AdminPostForm: React.FC = () => {
             <option value="mukti" className="font-mukti">
               মুক্তি
             </option>
-          </select>
+          </select> */}
           {[...Array(componentCount)].map((_, index) => (
             <PoemSectionInput
               dataHandle={handleStoryText}
