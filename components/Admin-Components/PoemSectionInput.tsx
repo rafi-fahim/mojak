@@ -37,7 +37,7 @@ const PoemSectionInput = ({ name, dataHandle, index }: Type) => {
       {showButton && (
         <button
           onClick={handleButtonClick}
-          className="p-2 bg-red-700 w-[300px] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
+          className="p-2 bg-red-700 w-[300px] max-sm:w-[96%] transition-all text-white uppercase font-medium text-xl rounded-md hover:border-2 hover:scale-125 hover:border-theme-4"
           type="button"
         >
           Click Here if you are done. Be careful

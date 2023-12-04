@@ -62,7 +62,13 @@ const Footer = () => {
         </div>
       </div>
       <div className="h-full w-full flex flex-col justify-start p-2 gap-2 items-end">
-        <Image className="rounded-full w-[100px] h-[100px]" alt="FSR SOFT LOGO" width={100} height={100} src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3"  />
+        <Image
+          className="rounded-full w-[70px] h-[70px]"
+          alt="FSR SOFT LOGO"
+          width={100}
+          height={100}
+          src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3"
+        />
         <h1 className="text-3xl max-sm:text-xl font-medium">Deveoped By</h1>
         <h1 className="text-4xl max-sm:text-2xl font-bold text-green-600">
           FSR SOFT
@@ -74,7 +80,7 @@ const Footer = () => {
           To Learn More:{" "}
           <a
             target="_blank"
-            className="text-red-600 font-medium"
+            className="text-red-600 z-30 font-medium"
             href="https://fsrportfolio.netlify.app"
           >
             Click Here
@@ -83,7 +89,7 @@ const Footer = () => {
       </div>
       <div className="w-full flex items-center col-span-2 justify-center p-2">
         Copyright ©2023{" "}
-        <span className="text-green-400 font-medium"> Mojak</span>
+        <span className="text-green-400 font-medium">Mojak</span>
       </div>
     </div>
   );
