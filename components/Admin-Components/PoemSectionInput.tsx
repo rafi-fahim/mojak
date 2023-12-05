@@ -4,9 +4,10 @@ interface Type {
   name: string;
   dataHandle: any;
   index: number;
+  fontfamily?: string;
 }
 
-const PoemSectionInput = ({ name, dataHandle, index }: Type) => {
+const PoemSectionInput = ({ name, dataHandle, index, fontfamily }: Type) => {
   const [showButton, setShowButton] = useState<boolean>(true);
   const [poemText, setPoemText] = useState<string>('');
 
@@ -28,7 +29,7 @@ const PoemSectionInput = ({ name, dataHandle, index }: Type) => {
       </label>
       <textarea
         id={name}
-        className='w-[400px] rounded p-2'
+        className={`w-[400px] rounded p-2 font-${fontfamily}`}
         name={name}
         placeholder='Enter the poem'
         value={poemText}

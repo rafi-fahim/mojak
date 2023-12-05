@@ -16,7 +16,7 @@ const RenderTHoughtCard = () => {
     {
       name: "Akib Al Hasan",
       photoURl:
-        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3",
+        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Profile_Pics%2F6cBMYcWzrMtMf8CSURJy.png?alt=media&token=f054922b-841e-4c95-98ca-5b009f55eb6f",
       bio: "Student || CPSCS",
       qoute:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore animi vel expedita. Fuga ad similique officia ullam iure? Quasi dolorum mollitia earum illum ipsum. Fugiat rerum pariatur maxime nam doloribus?",
@@ -25,7 +25,7 @@ const RenderTHoughtCard = () => {
     {
       name: "Santo",
       photoURl:
-        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3",
+        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Fsanto.png?alt=media&token=559bfd39-6c2e-4a32-95a3-0fe88abbcfca",
       bio: "Student & Graphics Designer || CPSCS",
       qoute:
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore animi vel expedita. Fuga ad similique officia ullam iure? Quasi dolorum mollitia earum illum ipsum. Fugiat rerum pariatur maxime nam doloribus?",

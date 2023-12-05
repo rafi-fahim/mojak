@@ -3,7 +3,7 @@ import PoemCard from "./PoemCard";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { auth, db } from "@/app/Firebase/firebase";
-import { motion } from "framer-motion";
+import { motion, spring } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
 import Loading from "./Loading";
@@ -80,6 +80,7 @@ const ShowAllPoemCards: React.FC = () => {
                       opacity: 1,
                       backgroundBlendMode: "normal",
                     }}
+                    transition={spring}
                     whileTap={{ scale: 1.4 }}
                     key={item.id}
                   >

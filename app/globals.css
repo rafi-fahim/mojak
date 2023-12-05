@@ -70,3 +70,6 @@
 .thought-card-width {
   width: clamp(30%, 650px, 97%);
 }
+.about-card-width {
+  width: clamp(30%, 700px, 98%);
+}

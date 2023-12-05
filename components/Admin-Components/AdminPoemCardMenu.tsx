@@ -8,16 +8,19 @@ import AdminConfirmModal from "./AdminConfirmModal";
 
 const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
   const [showDone, setShowDone] = useState<boolean>(false);
+  const [deleteLoading , setDeleteLoding] = useState<boolean>(false)
   const [modal, setModal] = useState<boolean>(false);
 
   const closeModal = () => setModal(false);
   const closeShowDone = () => setShowDone(false);
   const handleDeletePoem = async () => {
+    setDeleteLoding(true)
     await deleteDoc(doc(db, "poems", `${params.poemId}`));
     await deleteObject(ref(storage, `/Background_Images/${params.poemId}.png`));
     await deleteObject(ref(storage, `/Profile_Pics/${params.poemId}.png`)).then(
       () => {
         setShowDone(true);
+        setDeleteLoding(false)
       }
     );
   };
@@ -40,6 +43,16 @@ const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
             handleDelete={handleDeletePoem}
             handleModalClose={closeModal}
           />
+        </BackDrop>
+      )}
+      {deleteLoading && (
+        <BackDrop>
+          <div
+            className="flex flex-col items-center p-4 text-xl text-center bg-theme-1 text-white justify-center"
+          >
+            <h1>Wait a while 🤗</h1>
+            <p>Your Poem is beign Deleted......🗑</p>
+          </div>
         </BackDrop>
       )}
       {showDone && <ShowDone closeComponent={closeShowDone} />}

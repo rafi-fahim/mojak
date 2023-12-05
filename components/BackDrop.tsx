@@ -2,7 +2,7 @@ import React from 'react'
 import AdminConfirmModal from './Admin-Components/AdminConfirmModal';
 
 const BackDrop = (params: {
-  handleClose:any;
+  handleClose?:any;
   children: any;
 }) => {
   return (

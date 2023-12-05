@@ -41,21 +41,21 @@ const Footer = () => {
           <a
             target="_blank"
             className="h-50px w-50px hover:scale-125 duration-300"
-            href="https://www.facebook.com/"
+            href="https://web.facebook.com/profile.php?id=100089204100325"
           >
             {<Facebook />}
           </a>
           <a
             target="_blank"
             className="h-50px w-50px hover:scale-125 duration-300"
-            href="https://www.discord.app/"
+            href="https://discord.gg/Nzq67EKTAS"
           >
             {<Discord width="50px" height="50px" fill="#fff" key={"Bruh"} />}
           </a>
           <a
             target="_blank"
             className="h-50px w-50px hover:scale-125 duration-300"
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/nafiul.santo/"
           >
             {<Insta />}
           </a>
