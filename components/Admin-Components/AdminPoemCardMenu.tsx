@@ -5,14 +5,17 @@ import { deleteObject, ref } from "firebase/storage";
 import React, { useState } from "react";
 import BackDrop from "../BackDrop";
 import AdminConfirmModal from "./AdminConfirmModal";
+import { useRouter } from "next/navigation";
 
 const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
   const [showDone, setShowDone] = useState<boolean>(false);
   const [deleteLoading , setDeleteLoding] = useState<boolean>(false)
   const [modal, setModal] = useState<boolean>(false);
+  const router = useRouter()
 
   const closeModal = () => setModal(false);
   const closeShowDone = () => setShowDone(false);
+
   const handleDeletePoem = async () => {
     setDeleteLoding(true)
     await deleteDoc(doc(db, "poems", `${params.poemId}`));
@@ -21,6 +24,7 @@ const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
       () => {
         setShowDone(true);
         setDeleteLoding(false)
+        router.replace("/all-poems")
       }
     );
   };

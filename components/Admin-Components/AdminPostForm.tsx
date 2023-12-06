@@ -5,6 +5,7 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
 import { addDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import BackDrop from "../BackDrop";
+import { useRouter } from "next/navigation";
 
 interface PoemDataType {
   title: string;
@@ -41,7 +42,7 @@ const AdminPostForm: React.FC = () => {
     backgroundPhoto: null,
   });
   const [formLoading, setFormLoading] = useState<boolean>(false);
-
+  const router = useRouter()
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -92,6 +93,7 @@ const AdminPostForm: React.FC = () => {
       backgroundPhoto: null,
     });
     setComponentCount(1);
+    router.refresh()
   };
 
   const getDate = () => {
