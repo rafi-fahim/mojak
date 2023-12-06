@@ -16,7 +16,7 @@ interface poemDataType {
   author: string;
   bgPhotoLink: string;
   profilePhotoLink: string;
-  timeStamp: Date;
+  timeStamp: string;
   title: string;
   poemTextArr?: PoemText[];
   work: string;
@@ -39,9 +39,6 @@ const page = async ({ params }: { params: { id: string } }) => {
   const poemDivBgImage = {
     backgroundImage: `linear-gradient(to bottom, #1a1a1a60 , #1a1a1a9a), url(${poemData.bgPhotoLink})`,
   };
-
-
-
 
   return (
     <>
@@ -90,6 +87,7 @@ const page = async ({ params }: { params: { id: string } }) => {
               </p>
             );
           })}
+          <p className="font-light text-white self-end text-sm">{poemData.timeStamp}</p>
         </div>
       </div>
     </>

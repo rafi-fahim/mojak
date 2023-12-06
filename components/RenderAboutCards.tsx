@@ -11,6 +11,7 @@ interface aboutData {
   websiteLink: string;
   instaLink: string;
   contactEmail: string;
+  title: string;
 }
 
 const RenderAboutCards = () => {
@@ -18,22 +19,24 @@ const RenderAboutCards = () => {
     {
       name: "Nafiul Karim Santo",
       work: "STUDENT 👨‍🎓 | Designer 🎨 | Founder of MOJAK 🔴🔵🟢🟡",
-      bio: "Hello World. I am a student of Cantonment Public School & College, Saidpur As well as a skilled full-stack web-develper & founder of FSR SOFT",
+      bio: "Hello ! I am Santo. A student & a skilled graphics designer 🎨🖌 . I am skilled at Photoshop, Illustrator & Canva. I use Canva for most of my projects. If you want any work related to graphics design then contact 📞 me.",
       facebookLink: "https://web.facebook.com/profile.php?id=100089204100325",
       imgURL: "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Fsanto.png?alt=media&token=559bfd39-6c2e-4a32-95a3-0fe88abbcfca",
-      instaLink: "#",
+      instaLink: "https://www.instagram.com/nafiul.santo/s",
       websiteLink: "https://fsrportfolio.netlify.app/",
-      contactEmail: "nafiul.santo1234@gmail.com"
+      contactEmail: "nafiul.santo1234@gmail.com",
+      title:"Founder",
     },
     {
       name: "Fahim Shakil",
       work: "STUDENT 👨‍🎓 | Web developer 🕸 | Founder of FSR SOFT 💻",
-      bio: "Hello World. I am a student of Cantonment Public School & College, Saidpur As well as a skilled full-stack web-develper & founder of FSR SOFT",
+      bio: "Hello World! I am a student 👨‍🎓 of Cantonment Public School & College, Saidpur As well as a self-taught || skilled full-stack web-develper 💻 & founder of FSR SOFT🤵. I use the latest technology to make website blazingly fast ⚡ & mobile responsive 📱. You can contact 📞 me for any web development related issue.",
       facebookLink: "https://www.facebook.com/rafi.fahim.9237",
       imgURL: "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3",
-      instaLink: "https://www.instagram.com/nafiul.santo/s",
+      instaLink: "#",
       websiteLink: "https://fsrportfolio.netlify.app/",
-      contactEmail: "fsrafisocial18@gmail.com"
+      contactEmail: "fsrafisocial18@gmail.com",
+      title:"Developer",
     },
   ];
 
@@ -50,6 +53,7 @@ const RenderAboutCards = () => {
         instaLink={aboutData[0].instaLink}
         websiteLink={aboutData[0].websiteLink}
         contactEmail={aboutData[0].contactEmail}
+        title={aboutData[0].title}
       />
       <AboutCard
         bio={aboutData[1].bio}
@@ -60,6 +64,7 @@ const RenderAboutCards = () => {
         instaLink={aboutData[1].instaLink}
         websiteLink={aboutData[1].websiteLink}
         contactEmail={aboutData[1].contactEmail}
+        title={aboutData[1].title}
       />
     </div>
   );

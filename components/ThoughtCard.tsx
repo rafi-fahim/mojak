@@ -10,7 +10,7 @@ interface paramType {
 
 const ThoughtCard = (props: paramType) => {
   return (
-    <div className="grid grid-rows-[2fr,1fr] thought-card-width h-auto bg-theme-4 border-theme-2 rounded-sm shadow shadow-theme-1 p-3 justify-items-center place-items-center gap-2">
+    <div className="grid font-mukti grid-rows-[2fr,1fr] thought-card-width h-auto bg-theme-4 border-theme-2 rounded-sm shadow shadow-theme-1 p-3 justify-items-center place-items-center gap-2">
       <blockquote className="col-span-3 font-medium">
         <p>"{props.qoute}"</p>
       </blockquote>

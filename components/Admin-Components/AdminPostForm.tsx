@@ -4,13 +4,14 @@ import PoemSectionInput from "./PoemSectionInput";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
 import { addDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import BackDrop from "../BackDrop";
 
 interface PoemDataType {
   title: string;
   author: string;
   profilePhotoLink: string;
   bgPhotoLink: string;
-  timeStamp: Date | null;
+  timeStamp: string | null;
   bio: string;
   work: string;
   fontFamily: string;
@@ -93,13 +94,27 @@ const AdminPostForm: React.FC = () => {
     setComponentCount(1);
   };
 
+  const getDate = () => {
+    let today = new Date();
+    let date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    let time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    let dateTime = date + " " + time;
+    return dateTime;
+  };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const docData = await addDoc(poemRef, {
         ...poemData,
         poemTextArr: poemTextData,
-        timeStamp: serverTimestamp(),
+        timeStamp: getDate(),
       });
 
       const [profileSnapshot, backgroundSnapshot] = await Promise.all([
@@ -246,9 +261,7 @@ const AdminPostForm: React.FC = () => {
             id="fontFamily"
             className="p-2 rounded-sm w-[300px]"
           >
-            <option value="">
-              --default--
-            </option>
+            <option value="">--default--</option>
             <option value="charukola-light" className="font-charukola-light">
               চারূকলা লাইট
             </option>
@@ -283,11 +296,11 @@ const AdminPostForm: React.FC = () => {
             Submit
           </button>
           {formLoading && (
-            <h1 className="font-bold font-2xl text-green-700">
-              Submitting ....
-              <br />
-              Do not close this window until this message disappeares 🙂❌
-            </h1>
+            <BackDrop>
+              <div className="bg-theme-4 text-center rounded-sm flex p-5 text-2xl font-light items-center justify-center ">
+                <h1>Wait ✋. Your poem is beign submitted ....</h1>
+              </div>
+            </BackDrop>
           )}
         </form>
       </div>

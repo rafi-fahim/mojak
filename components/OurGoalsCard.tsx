@@ -30,8 +30,6 @@ const OurGoalsCard = (props: propsType) => {
         <motion.div
           initial={{
             opacity: 0,
-            animationTimingFunction: "ease-in",
-            animationDuration: ".2s",
           }}
           whileInView={{ opacity: 1 }}
           className={`basis-3/4 flex flex-col gap-3 p-2`}

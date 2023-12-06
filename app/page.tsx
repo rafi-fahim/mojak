@@ -17,7 +17,7 @@ const page: React.FC = () => {
             src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FVideos%2Fcover-page%20-begining.mp4?alt=media&token=737bc8b7-d1d5-45d0-8292-d58eda248446"
           />
         </video>
-        <h1 className="z-30 letter-space font-bold text-7xl sm:first-letter:text-[140px] font-rubik sm:text-9xl uppercase stroke-text text-white">
+        <h1 className="z-30 letter-space font-bold text-7xl sm:first-letter:text-[200px] font-rubik sm:text-9xl uppercase stroke-text text-white">
           MOJAK
         </h1>
       </section>
