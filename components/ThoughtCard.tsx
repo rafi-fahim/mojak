@@ -16,9 +16,9 @@ const ThoughtCard = (props: paramType) => {
       </blockquote>
       <div className="col-start-1 justify-center col-span-3 max-sm:flex-col items-center flex gap-2">
         <Image
-          className="rounded-full border border-theme-1"
-          width={60}
-          height={60}
+          className="rounded-full border w-[60px] h-[60px] border-theme-1"
+          width={200}
+          height={200}
           src={props.imgURL}
           alt={`${props.name}'s photo`}
         />

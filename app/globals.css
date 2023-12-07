@@ -21,7 +21,7 @@
   @apply place-items-center justify-items-center;
 }
 .poem-card {
-  width: clamp(10%, 350px, 97%);
+  width: clamp(10%, 350px, 95%);
   height: 250px;
 }
 

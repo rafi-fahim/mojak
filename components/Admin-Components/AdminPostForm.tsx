@@ -42,7 +42,9 @@ const AdminPostForm: React.FC = () => {
     backgroundPhoto: null,
   });
   const [formLoading, setFormLoading] = useState<boolean>(false);
+  const [font , setFont ] = useState<string>("")
   const router = useRouter()
+
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -175,7 +177,7 @@ const AdminPostForm: React.FC = () => {
             type="text"
             id="title"
             required
-            className="p-2 rounded-sm w-[300px]"
+            className="border border-theme-1 p-2 rounded-sm w-[300px]"
             placeholder="Poem Title"
             name="title"
             onChange={handleInputChange}
@@ -190,7 +192,7 @@ const AdminPostForm: React.FC = () => {
             type="text"
             id="author"
             required
-            className="p-2 rounded-sm w-[300px]"
+            className="border border-theme-1 p-2 rounded-sm w-[300px]"
             placeholder="Author"
             name="author"
             onChange={handleInputChange}
@@ -205,7 +207,7 @@ const AdminPostForm: React.FC = () => {
             type="text"
             id="work"
             required
-            className="p-2 rounded-sm w-[300px]"
+            className="border border-theme-1 p-2 rounded-sm w-[300px]"
             placeholder="Work"
             name="work"
             onChange={handleInputChange}
@@ -220,7 +222,7 @@ const AdminPostForm: React.FC = () => {
             type="text"
             id="bio"
             required
-            className="p-2 rounded-sm w-[300px]"
+            className="border border-theme-1 p-2 rounded-sm w-[300px]"
             placeholder="Bio"
             name="bio"
             onChange={handleInputChange}
@@ -235,7 +237,7 @@ const AdminPostForm: React.FC = () => {
             type="file"
             required
             id="profile"
-            className="p-2 w-[300px] rounded-sm bg-white active:bg-theme-1"
+            className="p-2 w-[300px] rounded-sm bg-white border border-theme-1"
             onChange={(e) => handleFileChange(e, "profile")}
           />
           <label
@@ -248,7 +250,7 @@ const AdminPostForm: React.FC = () => {
             type="file"
             required
             id="background"
-            className="p-2 font-charukola-light w-[300px] rounded-sm bg-white active:bg-theme-1"
+            className="p-2 font-charukola-light w-[300px] rounded-sm bg-white border border-theme-1"
             onChange={(e) => handleFileChange(e, "background")}
           />
           <label
@@ -258,10 +260,13 @@ const AdminPostForm: React.FC = () => {
             Select Font Family
           </label>
           <select
-            onChange={handleInputChange}
+            onChange={(e) => {
+              handleInputChange(e)
+              setFont(e.target.value)
+            }}
             name="fontFamily"
             id="fontFamily"
-            className="p-2 rounded-sm w-[300px]"
+            className="border border-theme-1 p-2 rounded-sm w-[300px]"
           >
             <option value="">--default--</option>
             <option value="charukola-light" className="font-charukola-light">
@@ -278,6 +283,7 @@ const AdminPostForm: React.FC = () => {
             <PoemSectionInput
               dataHandle={handleStoryText}
               key={index}
+              fontfamily={font}
               index={index}
               name={`poem-text`}
             />

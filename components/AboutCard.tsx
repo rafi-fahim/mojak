@@ -1,4 +1,5 @@
 "use client";
+import CodingSvg from "@/public/svg/CodingSvg";
 import DiscordSvg from "@/public/svg/DiscordSvg";
 import FacebookSvg from "@/public/svg/FacebookSvg";
 import InstaSvg from "@/public/svg/InstaSvg";
@@ -57,7 +58,7 @@ const AboutCard = (params: ParamType) => {
             <InstaSvg width="50px" height="50px" fill="#435585" />
           </a>
           <a target="_blank" href={params.websiteLink}>
-            <DiscordSvg width="50px" height="50px" fill="#435585" />
+            <CodingSvg bgFill="#F5E8C7" width="50px" height="50px" fill="#435585" />
           </a>
         </div>
       </motion.div>

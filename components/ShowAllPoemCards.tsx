@@ -2,12 +2,10 @@
 import PoemCard from "./PoemCard";
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { auth, db } from "@/app/Firebase/firebase";
+import { db } from "@/app/Firebase/firebase";
 import { motion, spring } from "framer-motion";
 import Link from "next/link";
-import Head from "next/head";
 import Loading from "./Loading";
-import { onAuthStateChanged } from "firebase/auth";
 
 // Define an interface for your poem data
 interface PoemData {
@@ -50,13 +48,7 @@ const ShowAllPoemCards: React.FC = () => {
   }, []);
   return (
     <>
-      <Head>
-        <meta
-          httpEquiv="Cache-Control"
-          content="no-store, no-cache, must-revalidate, max-age=0"
-        />
-        <meta httpEquiv="Pragma" content="no-cache" />
-      </Head>
+
       {loading ? (
         <Loading />
       ) : (
@@ -68,7 +60,7 @@ const ShowAllPoemCards: React.FC = () => {
               return (
                 <>
                   <motion.div
-                    className="rounded-md lenear-animation p-2 transition-transform poem-card h-auto"
+                    className="rounded lenear-animation p-2 transition-transform poem-card h-auto"
                     initial={{
                       translateX: "-100%",
                       opacity: 0,

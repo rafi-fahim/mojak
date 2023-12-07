@@ -32,7 +32,7 @@ const RenderAboutCards = () => {
       work: "STUDENT 👨‍🎓 | Web developer 🕸 | Founder of FSR SOFT 💻",
       bio: "Hello World! I am a student 👨‍🎓 of Cantonment Public School & College, Saidpur As well as a self-taught || skilled full-stack web-develper 💻 & founder of FSR SOFT🤵. I use the latest technology to make website blazingly fast ⚡ & mobile responsive 📱. You can contact 📞 me for any web development related issue.",
       facebookLink: "https://www.facebook.com/rafi.fahim.9237",
-      imgURL: "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3",
+      imgURL: "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-shakil.png?alt=media&token=09329202-ee68-49c5-b63a-d870cc5c11fb",
       instaLink: "#",
       websiteLink: "https://fsrportfolio.netlify.app/",
       contactEmail: "fsrafisocial18@gmail.com",

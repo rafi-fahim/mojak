@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "MOJAK",
   description: "A poem site for reading interesting poems.",
-  manifest: "/site.webmanifest.json",
   icons: {
     icon: "/favicon-32x32.png",
     shortcut: "/favicon-16x16.png",
@@ -15,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images:
-      "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Fhome-bg.png?alt=media&token=9185c395-8c12-4a68-b5c4-26fbf69486e3",
+      "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
   },
   twitter: {
     card: "summary_large_image",
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
     description: "The ultimate area for reading poems.",
     creator: "FSR SOFT",
     images: [
-      "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Fhome-bg.png?alt=media&token=9185c395-8c12-4a68-b5c4-26fbf69486e3",
+      "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/poemcrdo/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
     ],
   },
 };
@@ -35,29 +33,6 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <Head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="../public/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="../public/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="../public/favicon-16x16.png"
-        />
-        <meta
-          name="google-site-verification"
-          content="aZ0ei6kdiYd0UJL4TDIDGMzlk6myaVqLGEUGO4jEIPA"
-        />
-      </Head>
       <html lang="en">
         <body className="font-rubik">
           <Navbar />

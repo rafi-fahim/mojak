@@ -11,21 +11,7 @@ const Footer = () => {
       {/* Grid in global css file class="footer-grid" */}{" "}
       <div className="h-full w-full flex flex-col justify-start p-2 gap-2 items-start">
         {/* LOGO SVG START */}
-        <svg
-          width="100px"
-          height="100px"
-          viewBox="0 0 24 24"
-          fill="#fff"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
-            stroke="#000000"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <Image src="https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469" alt="" height={70} width={70} className="rounded-full border-slate-400" />
         {/* LOGO SVG END */}
         <h1 className="uppercase text-5xl max-sm:text-2xl font-bold text-yellow-50">
           Mojak

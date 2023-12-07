@@ -1,7 +1,4 @@
-"use client";
 import Image from "next/image";
-import AdminPoemCardMenu from "./Admin-Components/AdminPoemCardMenu";
-import { useState } from "react";
 
 interface Types {
   title: string;
@@ -27,15 +24,15 @@ const PoemCard = ({
     <>
       <div
         style={divStyles}
-        className="bg-no-repeat hover:-translate-y-4 transition-transform relative overflow-hidden h-full w-full rounded-md text-white gap-2 flex flex-col items-center justify-center"
+        className="bg-no-repeat p-2 text-center hover:-translate-y-4 transition-transform relative overflow-hidden h-full w-full rounded text-white gap-2 flex flex-col items-center justify-center"
       >
-        <h1 className="text-4xl font-bold font-road-rage">{title}</h1>
-        <div className="flex w-1/2 text-4xl justify-between items-center">
-          <p className="font-kdam-pro">By</p>
-          <p className="font-extrabold">{author}</p>
+        <h1 className="text-3xl font-medium">{title}</h1>
+        <div className="flex text-2xl justify-center gap-4 items-center">
+          <p className="font-light">By</p>
+          <p className="font-medium">{author}</p>
         </div>
         <Image
-          className="rounded-full h-[60px] w-[60px]"
+          className="rounded-full border-2 border-theme-2 h-[60px] w-[60px]"
           src={profilePic}
           height={60}
           width={60}

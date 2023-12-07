@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface Type {
   name: string;
@@ -9,7 +9,7 @@ interface Type {
 
 const PoemSectionInput = ({ name, dataHandle, index, fontfamily }: Type) => {
   const [showButton, setShowButton] = useState<boolean>(true);
-  const [poemText, setPoemText] = useState<string>('');
+  const [poemText, setPoemText] = useState<string>("");
 
   const handleButtonClick = () => {
     dataHandle({ name, value: poemText, index });
@@ -18,20 +18,23 @@ const PoemSectionInput = ({ name, dataHandle, index, fontfamily }: Type) => {
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     // Replace Enter key with a newline character
-    const newText = e.target.value.replace(/\r?\n/g, '\n');
+    const newText = e.target.value.replace(/\r?\n/g, "\n");
     setPoemText(newText);
   };
 
   return (
     <>
-      <label className='uppercase bg-theme-1 rounded-md p-2 text-white' htmlFor={name}>
+      <label
+        className="uppercase bg-theme-1 rounded-md p-2 text-white"
+        htmlFor={name}
+      >
         {name}
       </label>
       <textarea
         id={name}
-        className={`w-[400px] rounded p-2 font-${fontfamily}`}
+        className={`w-[400px] max-sm:w-full border border-theme-1 rounded p-2 font-${fontfamily && fontfamily}`}
         name={name}
-        placeholder='Enter the poem'
+        placeholder="Enter the poem"
         value={poemText}
         onChange={handleTextareaChange}
       ></textarea>

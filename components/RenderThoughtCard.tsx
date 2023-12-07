@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThoughtCard from "@/components/ThoughtCard";
 import { motion } from "framer-motion";
 
@@ -25,7 +25,7 @@ const RenderTHoughtCard = () => {
     {
       name: "Fahim Shakil",
       photoURl:
-        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-logo.png?alt=media&token=a7eddd64-8aa6-4d96-95ae-b454039ae6b3",
+        "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2Ffahim-shakil.png?alt=media&token=09329202-ee68-49c5-b63a-d870cc5c11fb",
       bio: "Student & CEO || FSR SOFT",
       qoute:
       "First of all this was a great Idea! An app only for sharing poems, supported with Bengali language. Thanks to my friend Nafiul Karim Santo for this great Idea. Second of all creating this website was a great challange for me. Because I tried my best to optimize it. It was created with the latest technologies. I never before made any website like this. So I tried to add every little & big feature I can. This was my friend's dream project. So I worked hard to make it real 🙂",
