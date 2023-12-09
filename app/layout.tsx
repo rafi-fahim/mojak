@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
@@ -24,6 +24,7 @@ export const metadata: Metadata = {
       "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/poemcrdo/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
     ],
   },
+  manifest: "./site.webmanifest",
 };
 
 export default function RootLayout({
