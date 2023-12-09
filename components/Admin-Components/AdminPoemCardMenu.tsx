@@ -55,7 +55,7 @@ const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
             className="flex flex-col items-center p-4 text-xl text-center bg-theme-1 text-white justify-center"
           >
             <h1>Wait a while 🤗</h1>
-            <p>Your Poem is beign Deleted......🗑</p>
+            <p>Your Poem is being Deleted......🗑</p>
           </div>
         </BackDrop>
       )}

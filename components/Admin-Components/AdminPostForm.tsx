@@ -306,7 +306,7 @@ const AdminPostForm: React.FC = () => {
           {formLoading && (
             <BackDrop>
               <div className="bg-theme-4 text-center rounded-sm flex p-5 text-2xl font-light items-center justify-center ">
-                <h1>Wait ✋. Your poem is beign submitted ....</h1>
+                <h1>Wait ✋. Your poem is being submitted ....</h1>
               </div>
             </BackDrop>
           )}
