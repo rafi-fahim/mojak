@@ -1,10 +1,8 @@
-import { auth, db } from "@/app/Firebase/firebase";
+import { db } from "@/app/Firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import AuthorInfoCard from "@/components/AuthorInfoCard";
 import Head from "next/head";
-import React, { useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import AdminPoemCardMenu from "@/components/Admin-Components/AdminPoemCardMenu";
+import React from "react";
 import RenderMenuModal from "@/components/Admin-Components/RenderMenuModal";
 
 interface PoemText {

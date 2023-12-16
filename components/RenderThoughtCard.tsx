@@ -62,11 +62,11 @@ const RenderTHoughtCard = () => {
       <h1 className="max-sm:text-xl text-2xl shadow shadow-theme-2 font-medium bg-theme-2 rounded-sm text-white p-2">
         Our Thoughts
       </h1>
-      <div className="flex justify-center items-center gap-2">
+      <div className="flex max-sm:flex-col justify-center items-center gap-2">
         <motion.button
           whileTap={{ scale: 1.6 }}
           onClick={handleThoughtCardLeft}
-          className="w-14 z-40 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 text-3xl rounded-sm shadow-sm p-1 shadow-slate-800"
+          className="w-14 max-sm:hidden z-40 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 text-3xl rounded-sm shadow-sm p-1 shadow-slate-800"
         >
           👈
         </motion.button>
@@ -80,11 +80,28 @@ const RenderTHoughtCard = () => {
         <motion.button
           whileTap={{ scale: 1.6 }}
           onClick={handleThoughtCardRight}
+          className="w-14 z-40 transition-all max-sm:hidden hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 rounded-sm text-3xl shadow-sm p-1 shadow-slate-800"
+        >
+          👉
+        </motion.button>
+        <div className="flex justify-between w-full items-center gap-3 p-2 sm:hidden">
+        <motion.button
+          whileTap={{ scale: 1.6 }}
+          onClick={handleThoughtCardLeft}
+          className="w-14 z-40 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 text-3xl rounded-sm shadow-sm p-1 shadow-slate-800"
+        >
+          👈
+        </motion.button>
+        <motion.button
+          whileTap={{ scale: 1.6 }}
+          onClick={handleThoughtCardRight}
           className="w-14 z-40 transition-all hover:animate-pulse hover:scale-105 hover:bg-theme-3 h-14 rounded-sm text-3xl shadow-sm p-1 shadow-slate-800"
         >
           👉
         </motion.button>
+        </div>
       </div>
+
     </>
   );
 };

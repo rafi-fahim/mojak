@@ -7,24 +7,19 @@ interface Types {
   profilePic: string;
 }
 
-const PoemCard = ({
-  title,
-  author,
-  imageUrl,
-  profilePic,
-}: Types) => {
+const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
   // Inline styles for the first div with a static gradient and dynamic background image
   const divStyles = {
     backgroundImage: `linear-gradient(to bottom, #181818c5, #1818188e), url('${imageUrl}')`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
-  
+
   return (
     <>
       <div
         style={divStyles}
-        className="bg-no-repeat p-2 text-center hover:-translate-y-4 transition-transform relative overflow-hidden h-full w-full rounded text-white gap-2 flex flex-col items-center justify-center"
+        className="bg-no-repeat hover:cursor-pointer poem-card-style p-2 text-center hover:-translate-y-4 transition-transform relative overflow-hidden h-full w-full rounded text-white gap-2 flex flex-col items-center justify-center"
       >
         <h1 className="text-3xl font-medium">{title}</h1>
         <div className="flex text-2xl justify-center gap-4 items-center">
@@ -38,10 +33,12 @@ const PoemCard = ({
           width={60}
           alt="Profile Pic"
         />
+        <div className="w-0 opacity-0 font-bold absolute center-absolute transition-all duration-300  -z-50 poem-card-show bg-[#ffffffb0] text-black text-xl text-center flex items-center justify-center">
+          <h1>Click here to read it 🙂</h1>
+        </div>
       </div>
     </>
   );
 };
 
 export default PoemCard;
-
