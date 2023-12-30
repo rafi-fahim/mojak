@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React, { useState } from "react";
+import UserOrAdminLink from "./UserOrAdminLink";
 const Navbar = () => {
   const [menu, setMenu] = useState<boolean>(false);
   const closeMenu = () => setMenu(false);
@@ -40,17 +41,11 @@ const Navbar = () => {
           <Link
             onClick={closeMenu}
             className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
-            href="/all-poems"
+            href="/all-collections"
           >
             Poems --&gt;
           </Link>
-          <Link
-          onClick={closeMenu}
-            className="z-30 pt-1 pb-1 pr-2 pl-2 w-1/2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
-            href="/admin"
-          >
-            Admin 🕵️‍♀️
-          </Link>
+        <UserOrAdminLink closeMenu={closeMenu} />
 
           <motion.button
             whileTap={{ scale: 1.3 }}
@@ -71,7 +66,7 @@ const Navbar = () => {
           </motion.button>
           <Link
             className="z-30 sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
-            href="/all-poems"
+            href="/all-collections"
           >
             Poems --&gt;
           </Link>
@@ -96,17 +91,12 @@ const Navbar = () => {
         >
           Contact 📞
         </Link>
-      <Link
-        className="z-30 max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
-        href="/admin"
-      >
-        Admin 🕵️‍♀️
-      </Link>
+      <UserOrAdminLink />
       </div>
 
       <Link
         className="z-30 max-sm:hidden pt-1 pb-1 pr-2 pl-2 bg-theme-4 rounded-[2px] hover:border-4 hover:border-theme-2 hover:scale-110 transition-all"
-        href="/all-poems"
+        href="/all-collections"
       >
         Poems --&gt;
       </Link>

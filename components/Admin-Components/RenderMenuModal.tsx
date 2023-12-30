@@ -1,27 +1,41 @@
 "use client";
-import { auth } from "@/app/Firebase/firebase";
+import { auth, db } from "@/app/Firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import AdminPoemCardMenu from "./AdminPoemCardMenu";
+import { doc, getDoc } from "firebase/firestore";
 
-const RenderMenuModal = (params: { id: string }) => {
-  const [user, setUser] = useState<object>();
+const RenderMenuModal = ({ id }: { id: string[] }) => {
+  const [admin, setAdmin] = useState<boolean>(false);
   const [adminMenu, setAdminMenu] = useState<boolean>(false);
+
   const closeAdminMenu = () => setAdminMenu(false);
   const openAdminMenu = () => setAdminMenu(true);
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      setUser(user);
+      checkAdmin(user.uid);
     }
   });
+
+  const checkAdmin = async (uid: string) => {
+    const res = await getDoc(doc(db, "admin", `${uid}`));
+    if (res.exists()) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
+  };
+
   return (
     <>
-      {user && <MenuSvg openMenu={openAdminMenu} key="ok" />}
+      {admin && <MenuSvg openMenu={openAdminMenu} key="ok" />}
       {adminMenu && (
         <AdminPoemCardMenu
           closeAdminMenu={closeAdminMenu}
-          poemId={params.id}
-          key={params.id}
+          poemId={id[1]}
+          collId={id[0]}
+          key={id[1]}
         />
       )}
     </>

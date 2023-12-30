@@ -17,16 +17,22 @@ interface PoemData {
   // Add other fields if necessary
 }
 
-const getData = async (): Promise<PoemData[]> => {
+interface Props {
+  poemsRef: string;
+}
+
+const getData = async (poemsRef: string): Promise<PoemData[]> => {
   let data: PoemData[] = [];
-  const querySnapshot = await getDocs(collection(db, "poems"));
+  const querySnapshot = await getDocs(
+    collection(db, "poemCollection", `${poemsRef}`, "allPoems")
+  );
   querySnapshot.forEach((doc) => {
     data.push({ ...doc.data(), id: doc.id } as PoemData);
   });
   return data;
 };
 
-const ShowAllPoemCards: React.FC = () => {
+const ShowAllPoemCards: React.FC<Props> = (props) => {
   const [poemData, setPoemData] = useState<PoemData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -34,7 +40,7 @@ const ShowAllPoemCards: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getData();
+        const data = await getData(props.poemsRef);
         setPoemData(data);
         setLoading(false);
         setError(false);
@@ -48,11 +54,10 @@ const ShowAllPoemCards: React.FC = () => {
   }, []);
   return (
     <>
-
       {loading ? (
         <Loading />
       ) : (
-        <div className="h-auto w-full p-2 poem-show-grid">
+        <div className="h-auto w-full poem-show-grid">
           {error ? (
             <p>It seem's you have a bad network 😐</p>
           ) : poemData ? (
@@ -77,7 +82,7 @@ const ShowAllPoemCards: React.FC = () => {
                     key={item.id}
                   >
                     <Link
-                      href={`/all-poems/${item.id}`}
+                      href={`/all-collections/${props.poemsRef}/${item.id}`}
                       className="h-full w-full"
                     >
                       {/* Poemcard css in global css */}

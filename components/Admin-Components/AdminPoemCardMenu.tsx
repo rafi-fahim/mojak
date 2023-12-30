@@ -7,7 +7,7 @@ import BackDrop from "../BackDrop";
 import AdminConfirmModal from "./AdminConfirmModal";
 import { useRouter } from "next/navigation";
 
-const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
+const AdminPoemCardMenu = (params: { collId: string; poemId: string; closeAdminMenu: any; }) => {
   const [showDone, setShowDone] = useState<boolean>(false);
   const [deleteLoading , setDeleteLoding] = useState<boolean>(false)
   const [modal, setModal] = useState<boolean>(false);
@@ -18,13 +18,13 @@ const AdminPoemCardMenu = (params: { poemId: string; closeAdminMenu: any }) => {
 
   const handleDeletePoem = async () => {
     setDeleteLoding(true)
-    await deleteDoc(doc(db, "poems", `${params.poemId}`));
+    await deleteDoc(doc(db, "poemCollection", `${params.collId}`, 'allPoems', `${params.poemId}`));
     await deleteObject(ref(storage, `/Background_Images/${params.poemId}.png`));
     await deleteObject(ref(storage, `/Profile_Pics/${params.poemId}.png`)).then(
       () => {
         setShowDone(true);
         setDeleteLoding(false)
-        router.replace("/all-poems")
+        router.replace(`/all-collections/${params.collId}`)
       }
     );
   };

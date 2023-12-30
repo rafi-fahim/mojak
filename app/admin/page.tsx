@@ -3,9 +3,9 @@ import { auth } from "../Firebase/firebase";
 import { useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import LoginForm from "@/components/Admin-Components/LoginForm";
-import AdminPostForm from "@/components/Admin-Components/AdminPostForm";
 import Loading from "@/components/Loading";
 import { motion } from "framer-motion";
+import RenderAdminCollection from "@/components/Admin-Components/RenderAdminCollection";
 
 const page = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
@@ -43,7 +43,7 @@ const page = () => {
               Sign out
             </motion.button>
           </div>
-          <AdminPostForm />
+          <RenderAdminCollection />
         </>
       ) : (
         <LoginForm setLogin={trueLoginState} />

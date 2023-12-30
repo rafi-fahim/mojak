@@ -6,10 +6,11 @@ import { motion } from "framer-motion";
 import BackDrop from "../BackDrop";
 
 interface Types {
-  setLogin: any;
+  setLogin?: any;
+  redirect?: any;
 }
 
-const LoginForm = ({ setLogin }: Types) => {
+const LoginForm = ({ setLogin, redirect }: Types) => {
   const [loginCred, setLoginCred] = useState({
     email: "",
     password: "",
@@ -26,7 +27,11 @@ const LoginForm = ({ setLogin }: Types) => {
       .then((userCredential) => {
         // Signed in
         setLogin();
-        setLoading(false);
+        if (setLogin) {
+          setLoading(false);
+        } else if (redirect) {
+          redirect.replace("/profile")
+        }
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -54,7 +59,7 @@ const LoginForm = ({ setLogin }: Types) => {
               };
             });
           }}
-          className="w-full bg-slate-200 p-2"
+          className="w-full border border-theme-1 rounded-sm bg-slate-200 p-2"
           type="text"
           placeholder="Your Email"
           required
@@ -70,7 +75,7 @@ const LoginForm = ({ setLogin }: Types) => {
               };
             });
           }}
-          className="w-full bg-slate-200 p-2"
+          className="w-full border border-theme-1 rounded-sm bg-slate-200 p-2"
           type="password"
           placeholder="Your Password"
           required

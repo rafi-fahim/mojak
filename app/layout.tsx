@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     images:
       "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/o/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Mojak",
-    description: "The ultimate area for reading poems.",
-    creator: "FSR SOFT",
-    images: [
-      "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/poemcrdo/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
-    ],
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "Mojak",
+  //   description: "The ultimate area for reading poems.",
+  //   creator: "FSR SOFT",
+  //   images: [
+  //     "https://firebasestorage.googleapis.com/v0/b/mojak-6de41.appspot.com/poemcrdo/Assets%2FImages%2FMOJAK.png?alt=media&token=4256d45a-93a0-46f6-8c45-aadc4345f469",
+  //   ],
+  // },
   manifest: "./site.webmanifest",
 };
 

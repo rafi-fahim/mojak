@@ -3,7 +3,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import PoemSectionInput from "./PoemSectionInput";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import { storage, poemRef, db } from "@/app/Firebase/firebase";
-import { addDoc, doc, serverTimestamp, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import BackDrop from "../BackDrop";
 import { useRouter } from "next/navigation";
 
@@ -16,6 +16,7 @@ interface PoemDataType {
   bio: string;
   work: string;
   fontFamily: string;
+  rating: object[];
   poemTextArr?: Array<{ [key: string]: string | number }>;
 }
 
@@ -24,7 +25,12 @@ interface PhotoDataType {
   backgroundPhoto: File | null; // Change Blob to File for file input
 }
 
-const AdminPostForm: React.FC = () => {
+interface Prop {
+  id: string;
+  closeForm: any;
+}
+
+const AdminPostForm: React.FC<Prop> = (props) => {
   const [componentCount, setComponentCount] = useState<number>(1);
   const [poemData, setPoemData] = useState<PoemDataType>({
     title: "",
@@ -35,6 +41,7 @@ const AdminPostForm: React.FC = () => {
     bio: "",
     work: "",
     fontFamily: "",
+    rating: []
   });
   const [poemTextData, setPoemTextData] = useState<object[]>([]);
   const [photo, setPhoto] = useState<PhotoDataType>({
@@ -88,6 +95,7 @@ const AdminPostForm: React.FC = () => {
       bio: "",
       work: "",
       fontFamily: "",
+      rating: []
     });
     setPoemTextData([]);
     setPhoto({
@@ -95,7 +103,8 @@ const AdminPostForm: React.FC = () => {
       backgroundPhoto: null,
     });
     setComponentCount(1);
-    router.refresh()
+    setTimeout(() => {}, 3000);
+    router.replace(`admin/${props.id}`)
   };
 
   const getDate = () => {
@@ -115,7 +124,7 @@ const AdminPostForm: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const docData = await addDoc(poemRef, {
+      const docData = await addDoc(collection(db, "poemCollection", `${props.id}`, "allPoems"), {
         ...poemData,
         poemTextArr: poemTextData,
         timeStamp: getDate(),
@@ -141,13 +150,15 @@ const AdminPostForm: React.FC = () => {
         bgPhotoLink,
       }));
 
-      await updateDoc(doc(db, "poems", `${docData.id}`), {
+      await updateDoc(doc(db, "poemCollection", `${props.id}`, "allPoems", `${docData.id}`), {
         bgPhotoLink,
         profilePhotoLink,
       });
-      setFormLoading(false);
       console.log("Document written and updated successfully");
       resetForm();
+      props.closeForm()
+      setFormLoading(false);
+      
     } catch (error) {
       console.error("Error:", error);
     }
