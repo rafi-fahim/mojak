@@ -35,6 +35,7 @@ const LoginForm = ({ setLogin, redirect }: Types) => {
       })
       .catch((error) => {
         const errorMessage = error.message;
+        setLoading(false)
         setFailedLoginStatus(true);
         setTimeout(() => {
           setFailedLoginStatus(false);

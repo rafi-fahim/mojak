@@ -1,18 +1,25 @@
 "use client";
-import { User, onAuthStateChanged } from "firebase/auth";
+import { User, onAuthStateChanged, signOut } from "firebase/auth";
 import Image from "next/image";
 import React, { useState } from "react";
 import { auth } from "../Firebase/firebase";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const page = () => {
   const [user, setUser] = useState<User>();
+  const router = useRouter()
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
       setUser(user);
     }
   });
+
+  function handleSignOut () {
+    signOut(auth)
+    router.replace("/")
+  }
 
   return (
     <div className="w-full min-h-screen gap-4 p-4 flex flex-col items-center justify-center rounded-sm bg-theme-4">
@@ -30,6 +37,7 @@ const page = () => {
       >
         Your Favourites
       </Link>
+      <button onClick={handleSignOut} className="p-2 bg-red-700 text-white font-bold border-2 rounded-sm hover:bg-white border-red-700 hover:text-black transition-all" type="button">Sign Out</button>
     </div>
   );
 };

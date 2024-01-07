@@ -12,13 +12,13 @@ import {
   where,
 } from "firebase/firestore";
 import Image from "next/image";
-import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import React, { FormEvent, useState } from "react";
 import BackDrop from "./BackDrop";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useRouter } from "next/navigation";
 
 interface CommentBox {
   comment: string;
-  reviewCount: number;
 }
 
 interface DataType {
@@ -55,7 +55,10 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [checkUserLoading, setUserLoading] = useState<boolean>(true);
   const [notReviewed, setNotReviewed] = useState<boolean>(false);
-  const router = useRouter()
+  const [ratingNumber, setNumber] = useState<number>(0);
+  const [hoverStar, setHoverStar] = useState<number | undefined>(undefined);
+
+  const router = useRouter();
 
   const checkReview = async (user: User) => {
     const review = await getReviews(collId, poemId, user.uid);
@@ -69,7 +72,6 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
 
   const [comment, setComment] = useState<CommentBox>({
     comment: "",
-    reviewCount: 0,
   });
 
   onAuthStateChanged(auth, (user) => {
@@ -78,6 +80,44 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
       checkReview(user);
     }
   });
+
+  const handleText = () => {
+    switch (ratingNumber || hoverStar) {
+      case 0:
+        return "Evaluate";
+      case 1:
+        return "Dissatifation";
+      case 2:
+        return "Unsatisfied";
+      case 3:
+        return "Normal";
+      case 4:
+        return "Satisfied";
+      case 5:
+        return "Very Satisfied";
+      default:
+        return "Evaluate";
+    }
+  };
+
+  const handlePlaceHolder = () => {
+    switch (ratingNumber || hoverStar) {
+      case 0:
+        return "Comment here...";
+      case 1:
+        return "We will try to upgrade next time .... Tell us how to improve..";
+      case 2:
+        return "what is your problem... ?";
+      case 3:
+        return "Please tell us what you liked & what offended you";
+      case 4:
+        return "Thanks for 4 start. Can you please tell us our deficiency so we can make 5 star content...";
+      case 5:
+        return "Please feel free to share why you like it & why others should...";
+      default:
+        return "Comment here...";
+    }
+  };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -96,12 +136,13 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
         profilePhotoUrl: user?.photoURL,
         userId: user?.uid,
         comment: comment.comment,
+        ratingCount: ratingNumber,
       }
     ).then((res) => {
       console.log(comment);
       setNotReviewed(true);
       setLoading(false);
-      router.replace(`/all-collections/${collId}/${poemId}`)
+      router.replace(`/all-collections/${collId}/${poemId}`);
     });
   };
 
@@ -133,7 +174,7 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
               id="comment"
               required
               className="border border-theme-1 p-2 rounded-sm w-[300px]"
-              placeholder="Your truthful review ⭐"
+              placeholder={`${handlePlaceHolder()}`}
               name="title"
               onChange={(e) => {
                 setComment((prev) => {
@@ -144,6 +185,45 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
                 });
               }}
             />
+            <h1>{handleText()}</h1>
+            <div className="flex gap-4 w-full justify-center items-center">
+              {Array(5)
+                .fill("")
+                .map((_, index) =>
+                  ratingNumber >= index + 1 || hoverStar! >= index + 1 ? (
+                    <AiFillStar
+                      onMouseOver={() =>
+                        !ratingNumber && setHoverStar(index + 1)
+                      }
+                      onMouseLeave={() => setHoverStar(undefined)}
+                      style={{
+                        color: "orange",
+                        height: "40px",
+                        width: "40px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => {
+                        setNumber(index + 1);
+                        console.log(ratingNumber);
+                      }}
+                    />
+                  ) : (
+                    <AiOutlineStar
+                      onMouseOver={() =>
+                        !ratingNumber && setHoverStar(index + 1)
+                      }
+                      onMouseLeave={() => setHoverStar(undefined)}
+                      style={{
+                        color: "orange",
+                        height: "40px",
+                        width: "40px",
+                        cursor: "pointer",
+                      }}
+                      onClick={() => setNumber(index + 1)}
+                    />
+                  )
+                )}
+            </div>
             <button
               type="submit"
               className="pr-4 pl-4 pt-2 pb-2 hover:rounded-3xl hover:bg-theme-4 hover:text-black transition-all border-2 hover:border-theme-1 bg-theme-1 text-white text-xl font-medium "

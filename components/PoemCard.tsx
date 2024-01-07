@@ -1,14 +1,66 @@
+import { db } from "@/app/Firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 interface Types {
   title: string;
   author: string;
   imageUrl: string; // Add a prop for the dynamic image URL
   profilePic: string;
+  collRef: string;
+  poemRef: string;
 }
 
-const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
+interface DataType {
+  username: string;
+  profilePhotoUrl: string;
+  comment: string;
+  ratingCount: number;
+  userId: string;
+  id: string;
+}
+
+const getReviews = async (collRef: string, poemRef: string) => {
+  let data: DataType[] = [];
+  const snapshot = await getDocs(
+    collection(
+      db,
+      "poemCollection",
+      `${collRef}`,
+      "allPoems",
+      `${poemRef}`,
+      "ratings"
+    )
+  );
+  snapshot.forEach((docs) => {
+    data.push({ ...docs.data(), id: docs.id } as DataType);
+  });
+  return data as DataType[];
+};
+
+const PoemCard = async ({
+  title,
+  author,
+  imageUrl,
+  profilePic,
+  collRef,
+  poemRef,
+}: Types) => {
   // Inline styles for the first div with a static gradient and dynamic background image
+  const reviewData = await getReviews(collRef, poemRef);
+  const countReview = () => {
+    let reviewCountDown: number = 0;
+    reviewData.forEach((data) => {
+      reviewCountDown += data.ratingCount;
+      console.log(reviewCountDown);
+    });
+
+    const avg = reviewCountDown;
+    return Math.floor(avg / reviewData.length);
+  };
+  const reviewSum: number = countReview();
+
   const divStyles = {
     backgroundImage: `linear-gradient(to bottom, #181818c5, #1818188e), url('${imageUrl}')`,
     backgroundSize: "cover",
@@ -35,6 +87,33 @@ const PoemCard = ({ title, author, imageUrl, profilePic }: Types) => {
         />
         <div className="w-0 opacity-0 font-bold absolute center-absolute transition-all duration-300  -z-50 poem-card-show bg-[#ffffffb0] text-black text-xl text-center flex items-center justify-center">
           <h1>Click here to read it 🙂</h1>
+        </div>
+        <div className="absolute justify-center items-center flex gap-4 right-0 bottom-0 p-2">
+          Rating :{Array(5)
+            .fill("")
+            .map((_, index) => {
+              if (reviewSum > index) {
+                return (
+                  <AiFillStar
+                    style={{
+                      color: "orange",
+                      height: "20px",
+                      width: "20px",
+                    }}
+                  />
+                );
+              } else {
+                return (
+                  <AiOutlineStar
+                    style={{
+                      color: "orange",
+                      height: "20px",
+                      width: "20px",
+                    }}
+                  />
+                );
+              }
+            })}
         </div>
       </div>
     </>

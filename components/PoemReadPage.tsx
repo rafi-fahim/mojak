@@ -5,6 +5,7 @@ import React from "react";
 import RenderMenuModal from "@/components/Admin-Components/RenderMenuModal";
 import RatingBox from "./RatingBox";
 import ShowRatings from "./ShowRatings";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 interface PoemText {
   "poem-text": "string";
@@ -24,47 +25,58 @@ interface poemDataType {
 }
 
 interface reviewCount {
-  username:string;
+  username: string;
   profilePhotoUrl: string;
   ratingCount: number;
   comment: string;
   id: string;
 }
 
-
-
-const getPoemData = async (collRef: string,poemRef: string) => {
+const getPoemData = async (collRef: string, poemRef: string) => {
   const poemData = await getDoc(
     doc(db, "poemCollection", `${collRef}`, "allPoems", `${poemRef}`)
   );
   return poemData.data() as poemDataType;
 };
 
-const getPoemReview = async (collRef: string,poemRef: string) => {
-  const datas: reviewCount[] = []
+const getPoemReview = async (collRef: string, poemRef: string) => {
+  const datas: reviewCount[] = [];
   const poemData = await getDocs(
-    collection(db, "poemCollection", `${collRef}`, "allPoems", `${poemRef}`, "ratings")
+    collection(
+      db,
+      "poemCollection",
+      `${collRef}`,
+      "allPoems",
+      `${poemRef}`,
+      "ratings"
+    )
   );
-  poemData.forEach(item => {
-    datas.push({ ...item.data(), id: item.id } as reviewCount)
-  })
+  poemData.forEach((item) => {
+    datas.push({ ...item.data(), id: item.id } as reviewCount);
+  });
   return datas as reviewCount[];
 };
 // ... (other imports)
 
-const PoemReadPage = async ({ params }: { params: string[]}) => {
+const PoemReadPage = async ({ params }: { params: string[] }) => {
   const poemData = await getPoemData(params[0], params[1]);
-  const reviewData = await getPoemReview(params[0], params[1])
+  const reviewData = await getPoemReview(params[0], params[1]);
 
   const countReview = () => {
-    let reviewCountDown:number = 0;
-    reviewData.forEach(data => {
-      reviewCountDown += data.ratingCount
-    })
-    return Math.floor((reviewData.length * 5) / reviewCountDown);
-  }
-  const reviewSum = countReview()
- 
+    let reviewCountDown: number = 0;
+    reviewData.forEach((data) => {
+      reviewCountDown += data.ratingCount;
+      console.log(reviewCountDown);
+    });
+    
+    const avg = (reviewCountDown)   
+    return Math.floor(avg / reviewData.length);
+  };
+  const reviewSum: number = countReview();
+
+  console.log(reviewSum);
+  
+
   const poemDivBgImage = {
     backgroundImage: `linear-gradient(to bottom, #1a1a1a60 , #1a1a1a9a), url(${poemData.bgPhotoLink})`,
   };
@@ -93,6 +105,33 @@ const PoemReadPage = async ({ params }: { params: string[]}) => {
           <h2 className="text-3xl font-bold uppercase stroke-text stroke-text text-white font-rubik">
             Author: {poemData.author}
           </h2>
+          <span className="flex gap-2">
+              {Array(5)
+                .fill("")
+                .map((_, index) => {
+                  if (reviewSum > index) {
+                    return (
+                      <AiFillStar
+                        style={{
+                          color: "orange",
+                          height: "20px",
+                          width: "20px",
+                        }}
+                      />
+                    );
+                  } else {
+                    return (
+                      <AiOutlineStar
+                        style={{
+                          color: "orange",
+                          height: "20px",
+                          width: "20px",
+                        }}
+                      />
+                    );
+                  }
+                })}
+            </span>
           {poemData.poemTextArr?.map((item) => {
             const lines = item["poem-text"].split("\n"); // Split text into an array of lines
             return (

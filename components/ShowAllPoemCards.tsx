@@ -91,6 +91,8 @@ const ShowAllPoemCards: React.FC<Props> = (props) => {
                         imageUrl={item.bgPhotoLink}
                         profilePic={item.profilePhotoLink}
                         title={item.title}
+                        collRef={props.poemsRef}
+                        poemRef={item.id}
                         key={item.id}
                       />
                     </Link>

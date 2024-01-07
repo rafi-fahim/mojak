@@ -76,7 +76,10 @@ const SignUpForm: React.FC = () => {
       }).then(() => {
         setSignUpState(false);
         router.replace("/profile");
-      });
+      }).catch(err => {
+        setSignUpState(false);
+        alert(err);
+      })
     }
   };
   const bg = {
