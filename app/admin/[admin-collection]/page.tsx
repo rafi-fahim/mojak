@@ -113,6 +113,8 @@ const page = ({ params }: { params: { "admin-collection": string } }) => {
                       imageUrl={item.bgPhotoLink}
                       profilePic={item.profilePhotoLink}
                       title={item.title}
+                      collRef={params["admin-collection"]}
+                      poemRef={item.id}
                       key={item.id}
                     />
                   </Link>
