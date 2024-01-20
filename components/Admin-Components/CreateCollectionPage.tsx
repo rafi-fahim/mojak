@@ -14,7 +14,7 @@ interface CollData {
   bgPhotoUrl: string;
 }
 
-const page = () => {
+const CreateCollectionPage = () => {
   const [checkLogin, setCheckLogin] = useState<boolean>(false);
   const [collData, setCollData] = useState<CollData>({
     title: "",
@@ -142,4 +142,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CreateCollectionPage;

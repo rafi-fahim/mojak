@@ -27,7 +27,6 @@ interface PhotoDataType {
 
 interface Prop {
   id: string;
-  closeForm: any;
 }
 
 const AdminPostForm: React.FC<Prop> = (props) => {
@@ -104,7 +103,7 @@ const AdminPostForm: React.FC<Prop> = (props) => {
     });
     setComponentCount(1);
     setTimeout(() => {}, 3000);
-    router.replace(`admin/${props.id}`)
+    router.back()
   };
 
   const getDate = () => {
@@ -156,7 +155,6 @@ const AdminPostForm: React.FC<Prop> = (props) => {
       });
       console.log("Document written and updated successfully");
       resetForm();
-      props.closeForm()
       setFormLoading(false);
       
     } catch (error) {

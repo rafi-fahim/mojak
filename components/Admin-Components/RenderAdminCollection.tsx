@@ -46,7 +46,7 @@ const RenderAdminCollection:FC = () => {
     <div className="flex flex-col items-center justify-center p-4 w-full h-auto">
       <div className="poem-show-grid w-full h-full">
         {collectionData.map(item => {
-          return <CollectionCard picUrl={item.bgPhotoUrl} title={item.title} ratingSum={item.ratingSum} id={item.id} key={item.id} />
+          return <CollectionCard picUrl={item.bgPhotoUrl} admin={true} title={item.title} ratingSum={item.ratingSum} id={item.id} key={item.id} />
         })}
       <Link href="/admin/create-collection" className="p-4 hover:bg-theme-3 hover:rounded-lg transition-all bg-theme-4 rounded font-medium text-xl">+ Create Collection</Link>
       </div>

@@ -6,6 +6,7 @@ interface PropType {
   ratingSum: number;
   picUrl: string;
   id: string;
+  admin?: boolean;
 }
 
 const CollectionCard:FC<PropType> = (props) => {
@@ -17,7 +18,7 @@ const CollectionCard:FC<PropType> = (props) => {
   };
 
   return (
-    <Link className='text-white hover:rounded-3xl hover:scale-110 transition-all duration-500 text-left' href={`/all-collections/${props.id}`}>
+    <Link className='text-white hover:rounded-3xl hover:scale-110 transition-all duration-500 text-left' href={`${props.admin ? `/admin/${props.id}` : `/all-collections/${props.id}`}`}>
     <div style={divStyles} className='p-4 max-sm:h-[200px] h-[270px] bg-no-repeat hover:-translate-y-2 transition-all max-sm:w-[300px] w-[400px] flex flex-col items-start justify-between gap-4'>
       <h1 className="text-5xl max-sm:text-3xl font-medium">Title: {props.title}</h1>
       {/* <p className="self-right">Rating: ⭐⭐⭐⭐⭐</p> */}

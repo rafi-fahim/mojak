@@ -46,7 +46,6 @@ const ShowRatings = ({
   const [data, setData] = useState<DataType[]>();
   const [user, setUser] = useState<User>();
   const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
-  const router = useRouter();
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -78,7 +77,6 @@ const ShowRatings = ({
       ).then(() => {
         setDeleteLoading(false);
         // revalidatePath(`/all-collections/[...collection]`, "page")
-        router.back();
       });
     } catch {
       console.log("Error deleting it");
@@ -159,7 +157,7 @@ const ShowRatings = ({
           </div>
         </>
       )}
-      {deleteLoading && (
+      {user && deleteLoading && (
         <BackDrop>
           <div className="p-8 flex bg-theme-4 text-center justify-center items-center rounded-sm">
             Deleting....

@@ -45,7 +45,7 @@ const RenderCollections = () => {
     return (
     <div className="poem-show-grid w-full h-auto">
       {collectionData.map(item => {
-        return <CollectionCard picUrl={item.bgPhotoUrl} title={item.title} ratingSum={item.ratingSum} id={item.id} key={item.id} />
+        return <CollectionCard picUrl={item.bgPhotoUrl} admin={false} title={item.title} ratingSum={item.ratingSum} id={item.id} key={item.id} />
       })}
     </div>
       );

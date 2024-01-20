@@ -12,7 +12,7 @@ import {
   where,
 } from "firebase/firestore";
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import BackDrop from "./BackDrop";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useRouter } from "next/navigation";
@@ -58,7 +58,13 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
   const [ratingNumber, setNumber] = useState<number>(0);
   const [hoverStar, setHoverStar] = useState<number | undefined>(undefined);
 
-  const router = useRouter();
+  // let router:any ;
+  
+  // useEffect(() => {
+  //   router = useRouter()
+  
+  // }, [])
+  
 
   const checkReview = async (user: User) => {
     const review = await getReviews(collId, poemId, user.uid);
@@ -142,13 +148,13 @@ const RatingBox = ({ collId, poemId }: { collId: string; poemId: string }) => {
       console.log(comment);
       setNotReviewed(true);
       setLoading(false);
-      router.replace(`/all-collections/${collId}/${poemId}`);
+      // router.replace(`/all-collections/${collId}/${poemId}`);
     });
   };
 
   return (
     <>
-      {notReviewed === false && (
+      {user && notReviewed === false && (
         <>
           <h1 className="text-5xl text-center max-sm:text-2xl font-bold">
             Your authentic review ⭐
